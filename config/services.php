@@ -30,5 +30,15 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'facebook' => [
+        'client_id' => '819233912694573',
+        'client_secret' => '25b434ba6ff328f2d3a10bec97331bcc',
+        'redirect' => 'http://localhost:8000/login/facebook/callback',
+    ],
+    'google' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => 'http://example.com/callback-url',
+    ],
 
 ];

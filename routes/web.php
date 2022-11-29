@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\sociallogin\SocialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
@@ -17,11 +18,15 @@ use App\Http\Controllers\VendorController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/login/facebook',[SocialController::class,'facebookRedirect'])->name('login.facebook');
+Route::get('/login/facebook/callback',[SocialController::class,'loginWithFacebook']);
+
+
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified','role:user'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
