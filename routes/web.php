@@ -46,7 +46,7 @@ Route::get('/optimize-clear', function() {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 })->name('/');
 
 Route::get('/login/facebook',[SocialController::class,'facebookRedirect'])->name('login.facebook');
