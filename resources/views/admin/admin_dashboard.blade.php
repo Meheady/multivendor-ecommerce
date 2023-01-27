@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/dark-theme.css" />
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/semi-dark.css" />
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/header-colors.css" />
-    <title>Multi-vendor Online Market</title>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
@@ -69,7 +69,7 @@
 </script>
 <script src="{{asset('admin')}}/assets/js/index.js"></script>
 <!--app JS-->
-<script src=""{{asset('admin')}}/assets/js/app.js"></script>
+<script src="{{asset('admin')}}/assets/js/app.js"></script>
 </body>
 
 </html>
