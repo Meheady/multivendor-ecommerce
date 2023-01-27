@@ -37,4 +37,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function imageUpload($image)
+    {
+        $imgExt = $image->getClientOriginalExtension();
+        $imgName = time()."admin-profile-image".$imgExt;
+        $location = "upload/admin-images/";
+        $image->move($location,$imgName);
+        return $imgUrl = $location.$imgName;
+    }
+
+    public static function updateAdminUser($request,$id)
+    {
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        if ($request->file('photo')){
+            if (file_exists($user->photo)){
+                unlink($user->photo);
+            }
+            $user->photo = self::imageUpload($request->file('photo'));
+        }
+
+        $user->save();
+
+    }
 }

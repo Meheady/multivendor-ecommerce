@@ -70,6 +70,7 @@
 <script src="{{asset('admin')}}/assets/js/index.js"></script>
 <!--app JS-->
 <script src="{{asset('admin')}}/assets/js/app.js"></script>
+@yield('script')
 </body>
 
 </html>

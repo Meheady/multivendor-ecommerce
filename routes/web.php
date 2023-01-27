@@ -65,6 +65,7 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     Route::get('/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
     Route::get('/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
     Route::get('/profile',[AdminController::class,'AdminProfile'])->name('admin.profile');
+    Route::post('/profile/update/{id}',[AdminController::class,'AdminProfileUpdate'])->name('admin.profile.update');
 
 });
 Route::middleware(['auth','role:vendor'])->group(function (){

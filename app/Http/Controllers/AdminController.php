@@ -32,4 +32,10 @@ class AdminController extends Controller
         $userData = User::find($id);
         return view('admin.admin-profile',compact('userData'));
     }
+
+    public function AdminProfileUpdate(Request $request,$id)
+    {
+        User::updateAdminUser($request,$id);
+        return redirect()->back()->with('success','Profile Update Successfully');
+    }
 }
