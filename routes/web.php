@@ -70,7 +70,11 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     Route::post('/change/password/save',[AdminController::class,'AdminChangePasswordSave'])->name('save.change.password');
 
 });
-Route::middleware(['auth','role:vendor'])->group(function (){
-    Route::get('/vendor/dashboard',[VendorController::class,'VendorDashboard'])->name('vendor.dashboard');
 
+Route::get('/vendor/login',[VendorController::class,'vendorLogin'])->name('vendor.login');
+Route::middleware(['auth','role:vendor'])->group(function (Route){
+    Route::controller(VendorController::class)->group(function (){
+        Route::get('/vendor/dashboard','VendorDashboard')->name('vendor.dashboard');
+
+    });
 });
