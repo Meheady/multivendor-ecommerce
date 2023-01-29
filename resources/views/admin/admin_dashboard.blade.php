@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/dark-theme.css" />
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/semi-dark.css" />
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/header-colors.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <title>Admin Dashboard</title>
 </head>
 
@@ -62,6 +63,7 @@
 <script src="{{asset('admin')}}/assets/plugins/sparkline-charts/jquery.sparkline.min.js"></script>
 <script src="{{asset('admin')}}/assets/plugins/jquery-knob/excanvas.js"></script>
 <script src="{{asset('admin')}}/assets/plugins/jquery-knob/jquery.knob.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     $(function() {
         $(".knob").knob();
@@ -70,6 +72,28 @@
 <script src="{{asset('admin')}}/assets/js/index.js"></script>
 <!--app JS-->
 <script src="{{asset('admin')}}/assets/js/app.js"></script>
+
+@if(Session::has('success'))
+    <script>
+        $(document).ready(function(){
+            toastr.success('{{Session::get('success')}}');
+        });
+    </script>
+@endif
+@if(Session::has('warning'))
+    <script>
+        $(document).ready(function(){
+            toastr.success('{{Session::get('warning')}}');
+        });
+    </script>
+@endif
+@if(Session::has('error'))
+    <script>
+        $(document).ready(function(){
+            toastr.success('{{Session::get('error')}}');
+        });
+    </script>
+@endif
 @yield('script')
 </body>
 
