@@ -40,11 +40,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function imageUpload($image)
+    public static function imageUpload($image,$location)
     {
         $imgExt = $image->getClientOriginalExtension();
-        $imgName = time()."admin-profile-image".'.'.$imgExt;
-        $location = "upload/admin-images/";
+        $imgName = time()."profile-image".'.'.$imgExt;
+        $location = $location;
         $image->move($location,$imgName);
         return $imgUrl = $location.$imgName;
     }
@@ -61,7 +61,27 @@ class User extends Authenticatable
             if (file_exists($user->photo)){
                 unlink($user->photo);
             }
-            $user->photo = self::imageUpload($request->file('photo'));
+            $user->photo = self::imageUpload($request->file('photo'),"upload/admin-images/");
+        }
+
+        $user->save();
+
+    }
+
+    public static function updateVendorProfile($request,$id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->vendor_join = $request->vendor_join;
+        $user->vendor_info = $request->vendor_info;
+        if ($request->file('photo')){
+            if (file_exists($user->photo)){
+                unlink($user->photo);
+            }
+            $user->photo = self::imageUpload($request->file('photo'),"upload/vendor-images/");
         }
 
         $user->save();
@@ -73,5 +93,13 @@ class User extends Authenticatable
         User::whereId(Auth::user()->id)->update([
             'password'=>Hash::make($request->newpass),
         ]);
+    }
+
+    public static function cngVendorPassword($request)
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        $user->password = Hash::make($request->newpass);
+        $user->save();
     }
 }
