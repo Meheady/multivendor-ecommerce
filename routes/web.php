@@ -53,8 +53,9 @@ Route::get('/login/facebook',[SocialController::class,'facebookRedirect'])->name
 Route::get('/login/facebook/callback',[SocialController::class,'loginWithFacebook']);
 
 
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('frontend.user.index');
 })->middleware(['auth','verified','role:user'])->name('dashboard');
 
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Multi-vendor online market | Login</title>
+    <title>Multi-vendor online market | Reset Password</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,41 +39,22 @@
     <div class="page-content pt-150 pb-150">
         <div class="container">
             <div class="row">
-                <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
+                <div class="col-xl-6 col-lg-8 col-md-12 m-auto">
                     <div class="row">
-                        <div class="col-lg-6 pr-30 d-none d-lg-block">
-                            <img class="border-radius-15" src="{{asset('frontend')}}/assets/imgs/page/login-1.png" alt="" />
+                        <div class="heading_s1">
+                            <img class="border-radius-15" src="{{ asset('frontend') }}/assets/imgs/page/reset_password.svg" alt="" />
+                            <h2 class="mb-15 mt-15">Email Password Reset</h2>
+                            <p class="mb-30">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
                         </div>
                         <div class="col-lg-6 col-md-8">
                             <div class="login_wrap widget-taber-content background-white">
                                 <div class="padding_eight_all bg-white">
-                                    <div class="heading_s1">
-                                        <h1 class="mb-5">Login</h1>
-                                        <p class="mb-30">Don't have an account? <a href="{{ route('register') }}">Create here</a></p>
-                                    </div>
-                                    <form form method="POST" action="{{ route('login') }}">
-                                        @csrf
+                                    <form method="post" action="{{ route('password.email') }}">
                                         <div class="form-group">
-                                            <input id="email" type="email" name="email" :value="old('email')" required autofocus />
+                                            <input type="email" required="" name="email" placeholder="Enter Reset Email" />
                                         </div>
                                         <div class="form-group">
-                                            <input id="password"
-                                                   type="password"
-                                                   name="password"
-                                                   required autocomplete="current-password" />
-                                        </div>
-                                        <div class="login_footer form-group mb-50">
-                                            <div class="chek-form">
-                                                <div class="custome-checkbox">
-                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember_me" value="" />
-                                                    <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                                                </div>
-                                            </div>
-                                            <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Login</button>
-                                            <a href="{{ route('login.facebook') }}" class="btn btn-secondary btn-block hover-up">Login with Facebook</a>
+                                            <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Email Password Reset Link</button>
                                         </div>
                                     </form>
                                 </div>

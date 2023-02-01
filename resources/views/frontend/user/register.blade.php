@@ -48,9 +48,19 @@
                                         <h1 class="mb-5">Create an Account</h1>
                                         <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Login</a></p>
                                     </div>
-                                    <form method="post">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    <form method="post" action="{{ route('register') }}">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="text" required="" name="username" placeholder="name" />
+                                            <input type="text" required="" name="name" placeholder="name" />
                                         </div>
                                         <div class="form-group">
                                             <input type="text" required="" name="email" placeholder="Email" />
