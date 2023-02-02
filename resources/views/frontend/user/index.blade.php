@@ -29,6 +29,9 @@
                                         <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>My Address</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" id="change-password-tab" data-bs-toggle="tab" href="#change-password" role="tab" aria-controls="change-password" aria-selected="true"><i class="fi-rs-key mr-10"></i>Change Password</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                     </li>
                                     <form method="POST" action="{{ route('logout') }}">
@@ -48,6 +51,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 class="mb-0">Hello {{ Auth::user()->name }}!</h3>
+                                            <img src="{{ !empty($user->photo)? asset($user->photo): asset('upload/no_image.jpg')}}" alt="Admin" class="rounded-circle p-1 bg-primary"  width="100px" height="100px">
                                         </div>
                                         <div class="card-body">
                                             <p>
@@ -198,6 +202,47 @@
                                                     <div class="form-group col-md-12">
                                                         <label></label>
                                                         <img id="show-image" src="{{ !empty($user->photo)? asset($user->photo): asset('upload/no_image.jpg')}}" alt="Admin" class="rounded-circle p-1 bg-primary"  width="100px" height="100px">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Change Password</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="post" action="{{ route('user.change.password') }}" name="enq" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-3">
+                                                            <h6 class="mb-0">Old Password</h6>
+                                                        </div>
+                                                        <div class="col-sm-9 text-secondary">
+                                                            <input type="password" name="oldpass" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-3">
+                                                            <h6 class="mb-0">New Password</h6>
+                                                        </div>
+                                                        <div class="col-sm-9 text-secondary">
+                                                            <input type="password" class="form-control" name="newpass" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-3">
+                                                            <h6 class="mb-0">Confirm Password</h6>
+                                                        </div>
+                                                        <div class="col-sm-9 text-secondary">
+                                                            <input type="password" class="form-control" name="newpass_confirmation" />
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>

@@ -57,6 +57,7 @@ Route::get('/login/facebook/callback',[SocialController::class,'loginWithFaceboo
 Route::controller(UserController::class)->middleware(['auth','verified','role:user'])->group(function (){
     Route::get('/dashboard','dashboard')->name('dashboard');
     Route::post('/user/profile/update','updateProfile')->name('user.profile.update');
+    Route::post('/user/change/password','changePassword')->name('user.change.password');
 });
 
 
