@@ -4,6 +4,7 @@ use App\Http\Controllers\sociallogin\SocialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,10 +54,10 @@ Route::get('/login/facebook',[SocialController::class,'facebookRedirect'])->name
 Route::get('/login/facebook/callback',[SocialController::class,'loginWithFacebook']);
 
 
-
-Route::get('/dashboard', function () {
-    return view('frontend.user.index');
-})->middleware(['auth','verified','role:user'])->name('dashboard');
+Route::controller(UserController::class)->middleware(['auth','verified','role:user'])->group(function (){
+    Route::get('/dashboard','dashboard')->name('dashboard');
+    Route::post('/user/profile/update','updateProfile')->name('user.profile.update');
+});
 
 
 require __DIR__.'/auth.php';

@@ -88,6 +88,24 @@ class User extends Authenticatable
 
     }
 
+    public static function updateUserProfile($request,$id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        if ($request->file('photo')){
+            if (file_exists($user->photo)){
+                unlink($user->photo);
+            }
+            $user->photo = self::imageUpload($request->file('photo'),"upload/user-images/");
+        }
+
+        $user->save();
+    }
+
     public static function changePassword($request)
     {
         User::whereId(Auth::user()->id)->update([

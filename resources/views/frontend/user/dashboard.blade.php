@@ -66,6 +66,29 @@
     <!-- Template  JS -->
     <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
     <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
+
+    @if(Session::has('success'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('success')}}');
+            });
+        </script>
+    @endif
+    @if(Session::has('warning'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('warning')}}');
+            });
+        </script>
+    @endif
+    @if(Session::has('error'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('error')}}');
+            });
+        </script>
+@endif
+@yield('script')
 </body>
 
 </html>
