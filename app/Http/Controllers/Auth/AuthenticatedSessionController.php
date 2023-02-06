@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
             $this->url = '/dashboard';
         }
 
-        return redirect()->intended($this->url);
+        return redirect()->intended($this->url)->with('success','Login Successfully');
     }
 
     /**
@@ -60,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/login')->with('success','Logout Successfully');
     }
 }

@@ -175,9 +175,13 @@
                                         <li>
                                             <a href="{{route('dashboard')}}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
-                                        <li>
-                                            <a href="{{ route('logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
-                                        </li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <li>
+                                                <a onclick="event.preventDefault();
+                                                this.closest('form').submit();" href="{{ route('logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                            </li>
+                                        </form>
                                     </ul>
                                 </div>
                                 @else
