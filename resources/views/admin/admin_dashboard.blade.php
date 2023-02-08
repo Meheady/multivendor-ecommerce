@@ -19,6 +19,8 @@
     <link href="{{asset('admin')}}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('admin')}}/assets/css/app.css" rel="stylesheet">
     <link href="{{asset('admin')}}/assets/css/icons.css" rel="stylesheet">
+
+    <link href="{{asset('admin')}}/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <!-- Theme Style CSS -->
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/dark-theme.css" />
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/semi-dark.css" />
@@ -64,6 +66,7 @@
 <script src="{{asset('admin')}}/assets/plugins/jquery-knob/excanvas.js"></script>
 <script src="{{asset('admin')}}/assets/plugins/jquery-knob/jquery.knob.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="{{asset('admin')}}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 <script>
     $(function() {
         $(".knob").knob();
@@ -72,6 +75,7 @@
 <script src="{{asset('admin')}}/assets/js/index.js"></script>
 <!--app JS-->
 <script src="{{asset('admin')}}/assets/js/app.js"></script>
+<script src="{{asset('admin')}}/assets/js/init.js"></script>
 
 @if(Session::has('success'))
     <script>

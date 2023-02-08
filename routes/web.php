@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\admin\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,14 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     Route::get('/change/password/',[AdminController::class,'AdminChangePassword'])->name('change.password');
     Route::post('/change/password/save',[AdminController::class,'AdminChangePasswordSave'])->name('save.change.password');
 
+    Route::controller(BrandController::class)->group(function (){
+        Route::get('/add/brand','addBrand')->name('add.brand');
+        Route::post('/store/brand','storeBrand')->name('store.brand');
+        Route::get('/all/brand','allBrand')->name('all.brand');
+        Route::get('/delete/brand/{id}','deleteBrand')->name('delete.brand');
+        Route::get('/edit/brand/{id}','editBrand')->name('edit.brand');
+        Route::post('/update/brand','updateBrand')->name('update.brand');
+    });
 });
 
 Route::get('/vendor/login',[VendorController::class,'vendorLogin'])->name('vendor.login');

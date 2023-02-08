@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Http\Controllers\admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use Illuminate\Http\Request;
+
+class BrandController extends Controller
+{
+    public function allBrand()
+    {
+        $allData = Brand::all();
+        return view('admin.brand.all-brand',compact('allData'));
+    }
+}
