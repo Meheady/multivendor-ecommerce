@@ -13,4 +13,9 @@ class BrandController extends Controller
         $allData = Brand::all();
         return view('admin.brand.all-brand',compact('allData'));
     }
+    public function addBrand()
+    {
+        return view('admin.brand.add-brand');
+    }
+
 }
