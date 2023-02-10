@@ -17,5 +17,10 @@ class BrandController extends Controller
     {
         return view('admin.brand.add-brand');
     }
+    public function storeBrand(Request $request)
+    {
+        Brand::storeBrand($request);
+        return redirect()->back()->with('success', 'Brand added successfully');
+    }
 
 }
