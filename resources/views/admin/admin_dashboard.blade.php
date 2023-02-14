@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/semi-dark.css" />
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/header-colors.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Admin Dashboard</title>
 </head>
 
@@ -67,6 +68,7 @@
 <script src="{{asset('admin')}}/assets/plugins/jquery-knob/jquery.knob.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{asset('admin')}}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(function() {
         $(".knob").knob();
@@ -98,6 +100,7 @@
         });
     </script>
 @endif
+
 @yield('script')
 </body>
 

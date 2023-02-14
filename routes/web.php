@@ -79,7 +79,7 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/all/brand','allBrand')->name('all.brand');
         Route::get('/delete/brand/{id}','deleteBrand')->name('delete.brand');
         Route::get('/edit/brand/{id}','editBrand')->name('edit.brand');
-        Route::post('/update/brand','updateBrand')->name('update.brand');
+        Route::post('/update/brand/{id}','updateBrand')->name('update.brand');
     });
 });
 

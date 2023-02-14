@@ -29,4 +29,20 @@ class Brand extends Model
            'brand_image' =>  self::imgUpload($request->file('photo'),$request->name)
         ]);
     }
+
+    public static function updateBrand($request,$id)
+    {
+        $brand = Brand::find($id);
+        if ($request->file('photo')){
+            if (file_exists($brand->brand_image)){
+                unlink($brand->brand_image);
+            }
+            $brand->brand_image = self::imgUpload($request->file('photo'),$request->name);
+        }
+        else{
+            $brand->brand_image = $brand->brand_image;
+            $brand->brand_name = $request->name;
+            $brand->save();
+        }
+    }
 }
