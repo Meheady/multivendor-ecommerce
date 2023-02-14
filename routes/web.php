@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +82,18 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/delete/brand/{id}','deleteBrand')->name('delete.brand');
         Route::get('/edit/brand/{id}','editBrand')->name('edit.brand');
         Route::post('/update/brand/{id}','updateBrand')->name('update.brand');
+    });
+    Route::controller(CategoryController::class)->group(function (){
+        Route::get('/add/category','addCategory')->name('add.category');
+        Route::post('/store/category','storeCategory')->name('store.category');
+        Route::get('/all/category','allCategory')->name('all.category');
+        Route::get('/delete/category/{id}','deleteCategory')->name('delete.category');
+        Route::get('/edit/category/{id}','editCategory')->name('edit.category');
+        Route::post('/update/category/{id}','updateCategory')->name('update.category');
+    });
+    Route::controller(SubCategoryController::class)->group(function (){
+        Route::get('/add/sub-category','addSubCategory')->name('add.sub.category');
+        Route::get('/all/sub-category','allSubCategory')->name('all.sub.category');
     });
 });
 
