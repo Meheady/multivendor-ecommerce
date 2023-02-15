@@ -35,5 +35,18 @@ class Category extends Model
     public static function updateCategory($request,$id)
     {
         $category = Category::find($id);
+        if ($request->file('photo')){
+            if (file_exists($category->cat_image)){
+                unlink($category->cat_image);
+            }
+            $imgUrl = self::imgUpload($request->file('photo'));
+        }
+        else {
+            $imgUrl = $category->cat_image;
+        }
+
+        $category->cat_image = $imgUrl;
+        $category->cat_name = $request->name;
+        $category->save();
     }
 }

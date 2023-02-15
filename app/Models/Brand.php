@@ -37,12 +37,13 @@ class Brand extends Model
             if (file_exists($brand->brand_image)){
                 unlink($brand->brand_image);
             }
-            $brand->brand_image = self::imgUpload($request->file('photo'),$request->name);
+            $imgUrl = self::imgUpload($request->file('photo'),$request->name);
         }
-        else{
-            $brand->brand_image = $brand->brand_image;
-            $brand->brand_name = $request->name;
-            $brand->save();
+        else {
+            $imgUrl = $brand->brand_image;
         }
+        $brand->brand_image = $imgUrl;
+        $brand->brand_name = $request->name;
+        $brand->save();
     }
 }
