@@ -94,6 +94,10 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     Route::controller(SubCategoryController::class)->group(function (){
         Route::get('/add/sub-category','addSubCategory')->name('add.sub.category');
         Route::get('/all/sub-category','allSubCategory')->name('all.sub.category');
+        Route::post('/store/sub-category','storeSubCategory')->name('store.sub.category');
+        Route::get('/edit/sub-category/{id}','editSubCategory')->name('edit.sub.category');
+        Route::post('/update/sub-category/{id}','updateSubCategory')->name('update.sub.category');
+        Route::get('/delete/sub-category/{id}','deleteSubCategory')->name('delete.sub.category');
     });
 });
 

@@ -19,7 +19,7 @@ class CategoryController extends Controller
             'photo' =>'required|image'
         ]);
         Category::storeCategory($request);
-        return redirect()->back()->with('massage','Category save successfully');
+        return redirect()->back()->with('success','Category save successfully');
 
     }
 
@@ -37,7 +37,7 @@ class CategoryController extends Controller
             unlink($data->cat_image);
         }
         $data->delete();
-        return redirect()->back()->with('massage','Category delete successfully');
+        return redirect()->back()->with('success','Category delete successfully');
     }
     public function editCategory($id)
     {
@@ -47,6 +47,6 @@ class CategoryController extends Controller
     public function updateCategory(Request $request, $id)
     {
         Category::updateCategory($request,$id);
-        return redirect()->route('all.category')->with('massage','Category update successfully');
+        return redirect()->route('all.category')->with('success','Category update successfully');
     }
 }
