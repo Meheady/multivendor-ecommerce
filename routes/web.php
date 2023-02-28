@@ -102,6 +102,7 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
 });
 
 Route::get('/vendor/login',[VendorController::class,'vendorLogin'])->name('vendor.login');
+Route::get('/become/vendor',[VendorController::class,'becomeVendor'])->name('become.vendor');
 Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
     Route::controller(VendorController::class)->group(function (){
         Route::get('/dashboard','VendorDashboard')->name('vendor.dashboard');
