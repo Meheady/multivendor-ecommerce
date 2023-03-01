@@ -57,4 +57,42 @@ class AdminController extends Controller
         }
 
     }
+
+    public function inactiveVendor()
+    {
+        $inactiveVendor = User::where('status','inactive')->where('role','vendor')->latest()->get();
+        return view('admin.vendor.inactive-vendor',compact('inactiveVendor'));
+    }
+    public function activeVendor()
+    {
+        $activeVendor = User::where('status','active')->where('role','vendor')->latest()->get();
+        return view('admin.vendor.active-vendor',compact('activeVendor'));
+    }
+
+    public function activeVendorDetails($id)
+    {
+        $userData = User::find($id);
+        return view('admin.vendor.active-vendor-details',compact('userData'));
+    }
+    public function inactiveVendorDetails($id)
+    {
+        $userData = User::find($id);
+        return view('admin.vendor.inactive-vendor-details',compact('userData'));
+    }
+
+    public function updateVendorStatus(Request $request,$id)
+    {
+        $user = User::find($id);
+
+        if ($user->status === 'active'){
+            $user->status = 'inactive';
+            $user->save();
+            return redirect()->route('inactive.vendor')->with('success',"Vendor inactive successfully");
+        }
+        else{
+            $user->status = 'active';
+            $user->save();
+            return redirect()->route('active.vendor')->with('success',"Vendor active successfully");
+        }
+    }
 }

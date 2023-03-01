@@ -4,6 +4,12 @@
 
 @section('vendor-main')
     <div class="page-content">
+        @if(Auth::user()->status === 'active')
+            <h4>Vendor account is <span class="text-success">Active</span></h4>
+        @else
+            <h4>Vendor account is <span class="text-danger">InActive</span></h4>
+        <p class="text-danger">Admin will check and approve your account</p>
+        @endif
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
             <div class="col">
                 <div class="card radius-10 bg-gradient-deepblue">

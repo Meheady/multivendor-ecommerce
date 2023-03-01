@@ -18,6 +18,7 @@
     <link href="{{asset('admin')}}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('admin')}}/assets/css/app.css" rel="stylesheet">
     <link href="{{asset('admin')}}/assets/css/icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <title>Vendor Login</title>
 </head>
 
@@ -79,6 +80,7 @@
 <script src="{{asset('admin')}}/assets/plugins/simplebar/js/simplebar.min.js"></script>
 <script src="{{asset('admin')}}/assets/plugins/metismenu/js/metisMenu.min.js"></script>
 <script src="{{asset('admin')}}/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!--Password show & hide js -->
 <script>
     $(document).ready(function () {
@@ -98,6 +100,28 @@
 </script>
 <!--app JS-->
 <script src="{{asset('admin')}}/assets/js/app.js"></script>
+
+@if(Session::has('success'))
+    <script>
+        $(document).ready(function(){
+            toastr.success('{{Session::get('success')}}');
+        });
+    </script>
+@endif
+@if(Session::has('warning'))
+    <script>
+        $(document).ready(function(){
+            toastr.success('{{Session::get('warning')}}');
+        });
+    </script>
+@endif
+@if(Session::has('error'))
+    <script>
+        $(document).ready(function(){
+            toastr.success('{{Session::get('error')}}');
+        });
+    </script>
+@endif
 </body>
 
 </html>

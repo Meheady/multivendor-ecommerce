@@ -99,10 +99,19 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::post('/update/sub-category/{id}','updateSubCategory')->name('update.sub.category');
         Route::get('/delete/sub-category/{id}','deleteSubCategory')->name('delete.sub.category');
     });
+
+    Route::controller(AdminController::class)->group(function (){
+        Route::get('/inactive/vendor','inactiveVendor')->name('inactive.vendor');
+        Route::get('/active/vendor','activeVendor')->name('active.vendor');
+        Route::get('/active/vendor/details/{id}','activeVendorDetails')->name('active.vendor.details');
+        Route::get('/inactive/vendor/details/{id}','inactiveVendorDetails')->name('inactive.vendor.details');
+        Route::post('/update/vendor/status/{id}','updateVendorStatus')->name('update.vendor.status');
+      });
 });
 
 Route::get('/vendor/login',[VendorController::class,'vendorLogin'])->name('vendor.login');
 Route::get('/become/vendor',[VendorController::class,'becomeVendor'])->name('become.vendor');
+Route::post('/register/vendor',[VendorController::class,'registerVendor'])->name('register.vendor');
 Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
     Route::controller(VendorController::class)->group(function (){
         Route::get('/dashboard','VendorDashboard')->name('vendor.dashboard');

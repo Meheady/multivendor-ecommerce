@@ -16,6 +16,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/plugins/animate.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/main.css?v=5.3" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 <body>
@@ -57,7 +58,7 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <form method="post" action="{{ route('register') }}">
+                                    <form method="post" action="{{ route('register.vendor') }}">
                                         @csrf
                                         <div class="form-group">
                                             <input class="form-control" type="text" required="" name="name" placeholder="Shop Name" />
@@ -133,9 +134,31 @@
     <script src="{{asset('frontend')}}/assets/js/plugins/jquery.vticker-min.js"></script>
     <script src="{{asset('frontend')}}/assets/js/plugins/jquery.theia.sticky.js"></script>
     <script src="{{asset('frontend')}}/assets/js/plugins/jquery.elevatezoom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Template  JS -->
     <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
     <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
+    @if(Session::has('success'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('success')}}');
+            });
+        </script>
+    @endif
+    @if(Session::has('warning'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('warning')}}');
+            });
+        </script>
+    @endif
+    @if(Session::has('error'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('error')}}');
+            });
+        </script>
+@endif
 </body>
 
 </html>
