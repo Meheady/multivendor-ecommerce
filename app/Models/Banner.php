@@ -16,7 +16,7 @@ class Banner extends Model
         $imgExt = $image->getClientOriginalExtension();
         $imgName = time().'.'.$imgExt;
         $imgLocation = 'upload/banner/'.$imgName;
-        Image::make($image)->resize(2376,807)->save($imgLocation);
+        Image::make($image)->resize(768,450)->save($imgLocation);
         return $imgLocation;
     }
 
