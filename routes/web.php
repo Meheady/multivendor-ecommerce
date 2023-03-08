@@ -10,6 +10,8 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\VendorProductController;
+use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\admin\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +124,23 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/active/vendor/details/{id}','activeVendorDetails')->name('active.vendor.details');
         Route::get('/inactive/vendor/details/{id}','inactiveVendorDetails')->name('inactive.vendor.details');
         Route::post('/update/vendor/status/{id}','updateVendorStatus')->name('update.vendor.status');
+      });
+
+    Route::controller(SliderController::class)->group(function (){
+        Route::get('/all/slider','allSlider')->name('all.slider');
+        Route::get('/create/slider','createSlider')->name('create.slider');
+        Route::post('/store/slider','storeSlider')->name('store.slider');
+        Route::get('/edit/slider/{id}','editSlider')->name('edit.slider');
+        Route::post('/update/slider/{id}','updateSlider')->name('update.slider');
+        Route::get('/delete/slider/{id}','deleteSlider')->name('delete.slider');
+      });
+    Route::controller(BannerController::class)->group(function (){
+        Route::get('/all/banner','allBanner')->name('all.banner');
+        Route::get('/create/banner','createBanner')->name('create.banner');
+        Route::post('/store/banner','storeBanner')->name('store.banner');
+        Route::get('/edit/banner/{id}','editBanner')->name('edit.banner');
+        Route::post('/update/banner/{id}','updateBanner')->name('update.banner');
+        Route::get('/delete/banner/{id}','deleteBanner')->name('delete.banner');
       });
 });
 

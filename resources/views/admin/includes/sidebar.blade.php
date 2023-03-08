@@ -74,6 +74,32 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-menu"></i>
+                </div>
+                <div class="menu-title">Manage Slider</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All Slider</a>
+                </li>
+                <li> <a href="{{ route('create.slider') }}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-menu"></i>
+                </div>
+                <div class="menu-title">Manage Banner</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.banner') }}"><i class="bx bx-right-arrow-alt"></i>All Banner</a>
+                </li>
+                <li> <a href="{{ route('create.banner') }}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-label">Setup</li>
         <li>
             <a href="javascript:;" class="has-arrow">
