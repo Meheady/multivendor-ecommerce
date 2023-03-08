@@ -46,4 +46,10 @@ class SubCategoryController extends Controller
         $Data->delete();
         return redirect()->back()->with('success','Delete successfully');
     }
+
+    public function subCatByCatAjax($id)
+    {
+        $subCat = Subcategory::where('category_id',$id)->get();
+        return json_encode($subCat);
+    }
 }

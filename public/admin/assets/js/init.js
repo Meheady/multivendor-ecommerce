@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $('#example').DataTable();
-
+    $('.content').richText({
+        height:50
+    });
     $('.delete').click(function (e) {
         e.preventDefault()
         const link = $(this).attr('href');

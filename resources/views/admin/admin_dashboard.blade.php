@@ -9,6 +9,7 @@
     <link rel="icon" href="{{asset('admin')}}/assets/images/favicon-32x32.png" type="image/png" />
     <!--plugins-->
     <link href="{{asset('admin')}}/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+    <link href="{{asset('admin')}}/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet" />
     <link href="{{asset('admin')}}/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="{{asset('admin')}}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="{{asset('admin')}}/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
@@ -19,6 +20,8 @@
     <link href="{{asset('admin')}}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('admin')}}/assets/css/app.css" rel="stylesheet">
     <link href="{{asset('admin')}}/assets/css/icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{asset('admin')}}/assets/css/richtext.min.css" rel="stylesheet">
 
     <link href="{{asset('admin')}}/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <!-- Theme Style CSS -->
@@ -68,6 +71,8 @@
 <script src="{{asset('admin')}}/assets/plugins/jquery-knob/jquery.knob.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{asset('admin')}}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('admin')}}/assets/plugins/input-tags/js/tagsinput.js"></script>
+<script src="{{asset('admin')}}/assets/js/jquery.richtext.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(function() {

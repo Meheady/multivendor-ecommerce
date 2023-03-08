@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\VendorProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +100,20 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/edit/sub-category/{id}','editSubCategory')->name('edit.sub.category');
         Route::post('/update/sub-category/{id}','updateSubCategory')->name('update.sub.category');
         Route::get('/delete/sub-category/{id}','deleteSubCategory')->name('delete.sub.category');
+        Route::get('/get-subcategory-by-category/{id}','subCatByCatAjax');
+    });
+    Route::controller(ProductController::class)->group(function (){
+        Route::get('/add/product','addProduct')->name('add.product');
+        Route::get('/all/product','allProduct')->name('all.product');
+        Route::post('/store/product','storeProduct')->name('store.product');
+        Route::get('/edit/product/{id}','editProduct')->name('edit.product');
+        Route::post('/update/product/{id}','updateProduct')->name('update.product');
+        Route::get('/delete/product/{id}','deleteProduct')->name('delete.product');
+        Route::get('/delete/multiimages/{id}','deleteMultiimages')->name('delete.multiimages');
+        Route::get('/view/product/{id}','viewProduct')->name('view.product');
+        Route::get('/status/product/{id}','statusProduct')->name('status.product');
+        Route::post('/update/product-thumb/{id}','updateProductThumb')->name('update.product.thumb');
+        Route::post('/update/product-multimage/','updateProductKultimg')->name('update.product.multimg');
     });
 
     Route::controller(AdminController::class)->group(function (){
@@ -121,6 +137,19 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
         Route::post('/update/profile/{id}','UpdateVendorProfile')->name('update.vendor.profile');
         Route::get('/change/password/','VendorChangePassword')->name('vendor.change.password');
         Route::post('/change/password/save/','VendorChangePasswordSave')->name('vendor.change.password.save');
-
+    });
+    Route::controller(VendorProductController::class)->group(function (){
+        Route::get('/add/vendor/product','addVendorProduct')->name('add.vendor.product');
+        Route::get('/all/vendor/product','allVendorProduct')->name('all.vendor.product');
+        Route::post('/store/vendor/product','storeVendorProduct')->name('store.vendor.product');
+        Route::get('/get-subcategory-by-category/{id}','subCatByCatAjax');
+        Route::get('/edit/vendor/product/{id}','editVendorProduct')->name('edit.vendor.product');
+        Route::post('/update/vendor/product/{id}','updateVendorProduct')->name('update.vendor.product');
+        Route::get('/delete/vendor/product/{id}','deleteVendorProduct')->name('delete.vendor.product');
+        Route::get('/delete/vendor/multiimages/{id}','deleteVendorMultiimages')->name('delete.vendor.multiimages');
+        Route::get('/view/vendor/product/{id}','viewVendorProduct')->name('view.vendor.product');
+        Route::get('/status/vendor/product/{id}','statusVendorProduct')->name('status.vendor.product');
+        Route::post('/update/vendor/product-thumb/{id}','updateVendorProductThumb')->name('update.vendor.product.thumb');
+        Route::post('/update/vendor/product-multimage/','updateVendorProductKultimg')->name('update.vendor.product.multimg');
     });
 });
