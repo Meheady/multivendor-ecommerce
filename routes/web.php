@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\BannerController;
+use App\Http\Controllers\frontend\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -171,4 +172,10 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
         Route::post('/update/vendor/product-thumb/{id}','updateVendorProductThumb')->name('update.vendor.product.thumb');
         Route::post('/update/vendor/product-multimage/','updateVendorProductKultimg')->name('update.vendor.product.multimg');
     });
+});
+
+//frontend routes
+
+Route::controller(FrontendController::class)->group(function (){
+    Route::get('/product/details/{id}/{slug}','productDetails');
 });

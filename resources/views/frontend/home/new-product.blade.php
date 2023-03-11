@@ -13,7 +13,7 @@
                 </li>
                 @foreach($categories as  $item)
                 <li class="nav-item" role="presentation">
-                    <a href="#category{{ $item->id }}" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">{{ $item->cat_name }}</a>
+                    <a href="#category{{ $item->id }}" class="nav-link" data-bs-toggle="tab" type="button" role="tab" aria-controls="tab-two" aria-selected="false">{{ $item->cat_name }}</a>
                 </li>
                 @endforeach
             </ul>
@@ -28,8 +28,8 @@
                         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
-                                    <a href="shop-product-right.html">
-                                        <img class="default-img" {{asset($item->product_thumbnail)}}" alt="" />
+                                    <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">
+                                        <img class="default-img" src="{{asset($item->product_thumbnail)}}" alt="" />
                                     </a>
                                 </div>
                                 <div class="product-action-1">
@@ -56,7 +56,7 @@
                                 <div class="product-category">
                                     <a href="shop-grid-right.html">{{ $category->cat_name }}</a>
                                 </div>
-                                <h2><a href="shop-product-right.html">{{ $item->product_name }}</a></h2>
+                                <h2><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -107,8 +107,8 @@
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
-                                            <img class="default-img" {{asset($ite->product_thumbnail)}}" alt="" />
+                                        <a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">
+                                            <img class="default-img" src="{{asset($ite->product_thumbnail)}}" alt="" />
                                         </a>
                                     </div>
                                     <div class="product-action-1">
@@ -121,10 +121,9 @@
                                         $discount =  ($amount/$ite->selling_price) * 100;
                                         $vendor =  App\Models\User::where('id',$ite->vendor_id)->first();
                                         $category =  App\Models\Category::where('id',$ite->category_id)->first();
-
                                     @endphp
                                     <div class="product-badges product-badges-position product-badges-mrg">
-                                        @if($ite->selling_price == NULL)
+                                        @if($ite->discount_price == NULL)
                                             <span class="new">New</span>
                                         @else
                                             <span class="hot">{{ round($discount) }}%</span>
@@ -135,7 +134,7 @@
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{ $category->cat_name }}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">{{ $ite->product_name }}</a></h2>
+                                    <h2><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $ite->product_name }}</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
