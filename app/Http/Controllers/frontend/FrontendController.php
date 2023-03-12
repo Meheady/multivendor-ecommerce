@@ -22,10 +22,15 @@ class FrontendController extends Controller
         $skip_cat_2 = Category::skip(2)->first();
         $skip_prod_2 = Product::where('status',1)->where('category_id',$skip_cat_2->id)->orderBy('id','DESC')->limit(5)->get();
 
+        $hotDeal = Product::where('status',1)->where('hot_deals','1')->orderBy('id','DESC')->limit(3)->get();
+        $specialOffer = Product::where('status',1)->where('special_offer','1')->orderBy('id','DESC')->limit(3)->get();
+        $specialDeals = Product::where('status',1)->where('special_deals','1')->orderBy('id','DESC')->limit(3)->get();
+        $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        $allVendor = User::where('status','active')->where('role','vendor')->orderBy('id','ASC')->limit(3)->get();
         return view('frontend.index',compact(
             'skip_cat_0','skip_prod_0',
             'skip_cat_1','skip_prod_1',
-            'skip_cat_2','skip_prod_2',
+            'skip_cat_2','skip_prod_2','hotDeal','specialOffer','specialDeals','new','allVendor'
         ));
     }
     public function productDetails($id,$slug)
@@ -53,5 +58,12 @@ class FrontendController extends Controller
         $amount = $product->selling_price - $product->discount_price;
         $discount =  ($amount/$product->selling_price) * 100;
         return view('frontend.product.product-details',compact('data','discount'));
+    }
+
+    public function vendorDetails($id)
+    {
+        $vendor = User::find($id);
+        $product = Product::where('vendor_id',$id)->where('status','1')->get();
+        return view('frontend.vendor.vendor-details',compact('vendor','product'));
     }
 }

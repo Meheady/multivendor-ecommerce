@@ -176,4 +176,5 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
 
 Route::controller(FrontendController::class)->group(function (){
     Route::get('/product/details/{id}/{slug}','productDetails');
+    Route::get('/vendor/details/{id}','vendorDetails')->name('vendor.details');
 });
