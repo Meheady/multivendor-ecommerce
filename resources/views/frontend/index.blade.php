@@ -15,15 +15,15 @@
 
 
     <!-- TV Category -->
-    @include('frontend.home.tv-category')
+    @include('frontend.home.one-category')
     <!--End TV Category -->
 
     <!-- Tshirt Category -->
-    @include('frontend.home.tshirt-category')
+    @include('frontend.home.two-category')
     <!--End Tshirt Category -->
 
     <!-- Computer Category -->
-    @include('frontend.home.computer-category')
+    @include('frontend.home.three-category')
     <!--End Computer Category -->
 
     @include('frontend.home.hot-deal')

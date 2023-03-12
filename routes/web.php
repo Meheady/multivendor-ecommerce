@@ -54,9 +54,7 @@ Route::get('/optimize-clear', function() {
     return 'View cache cleared';
 });
 
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('/');
+Route::get('/',[FrontendController::class,'index'])->name('/');
 
 Route::get('/login/facebook',[SocialController::class,'facebookRedirect'])->name('login.facebook');
 Route::get('/login/facebook/callback',[SocialController::class,'loginWithFacebook']);
