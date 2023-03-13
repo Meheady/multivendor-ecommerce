@@ -177,4 +177,6 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
 Route::controller(FrontendController::class)->group(function (){
     Route::get('/product/details/{id}/{slug}','productDetails');
     Route::get('/vendor/details/{id}','vendorDetails')->name('vendor.details');
+    Route::get('/all/vendor/','allVendor')->name('all.vendor');
+    Route::get('/product/category/{id}/{slug}','catWiseProduct');
 });

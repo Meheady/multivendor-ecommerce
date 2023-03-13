@@ -224,14 +224,14 @@
                                 <ul>
                                     @foreach($categories as $category)
                                     <li>
-                                        <a href="#"> <img src="{{asset($category->cat_image)}}" alt="" />{{  $category->cat_name}}</a>
+                                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{asset($category->cat_image)}}" alt="" />{{  $category->cat_name}}</a>
                                     </li>
                                      @endforeach
                                 </ul>
                                 <ul class="end">
                                     @foreach($categories as $category)
                                         <li>
-                                            <a href="#"> <img src="{{asset($category->cat_image)}}" alt="" />{{  $category->cat_name}}</a>
+                                            <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{asset($category->cat_image)}}" alt="" />{{  $category->cat_name}}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -275,7 +275,7 @@
 
                                 @foreach($categories as $category)
                                 <li>
-                                    <a href="#">{{ $category->cat_name }}<i class="fi-rs-angle-down"></i></a>
+                                    <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->cat_name }}<i class="fi-rs-angle-down"></i></a>
                                     @php
                                         $subCat = App\Models\SubCategory::where('category_id',$category->id)->orderBy('sub_cat_name','ASC')->get();
                                     @endphp

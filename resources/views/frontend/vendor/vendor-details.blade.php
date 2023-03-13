@@ -11,7 +11,6 @@
     <div class="container mb-30">
         <div class="archive-header-2 text-center pt-30 pb-30">
             <h1 class="display-2 mb-30">Nest Food Store</h1>
-
         </div>
         <div class="row flex-row-reverse">
             <div class="col-lg-4-5">
@@ -169,15 +168,15 @@
                             <ul class="social-network">
                                 <li class="hover-up">
                                     <a href="#">
-                                        <img src="{{ asset('frontend/assets') }}/assets/imgs/theme/icons/social-tw.svg" alt="" />
+                                        <img src="{{ asset('frontend') }}/assets/imgs/theme/icons/social-tw.svg" alt="" />
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="vendor-info">
                             <ul class="font-sm mb-20">
-                                <li><img class="mr-5" src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>{{ $vendor->address }}</span></li>
-                                <li><img class="mr-5" src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call Us:</strong><span>(+88) - {{ $vendor->phone }}</span></li>
+                                <li><img class="mr-5" src="{{ asset('frontend') }}/assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>{{ $vendor->address }}</span></li>
+                                <li><img class="mr-5" src="{{ asset('frontend') }}/assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call Us:</strong><span>(+88) - {{ $vendor->phone }}</span></li>
                             </ul>
                             <a href="vendor-details-1.html" class="btn btn-xs">Contact Seller <i class="fi-rs-arrow-small-right"></i></a>
                         </div>

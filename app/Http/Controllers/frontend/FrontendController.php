@@ -66,4 +66,19 @@ class FrontendController extends Controller
         $product = Product::where('vendor_id',$id)->where('status','1')->get();
         return view('frontend.vendor.vendor-details',compact('vendor','product'));
     }
+
+    public function allVendor()
+    {
+        $allVendor = User::where('status','active')->where('role','vendor')->orderBy('id','ASC')->get();
+        return view('frontend.vendor.all-vendor',compact('allVendor'));
+    }
+
+    public function catWiseProduct($id,$slug)
+    {
+        $product = Product::where('category_id',$id)->where('status','1')->get();
+        $category = Category::all();
+        $cat = Category::find($id);
+        $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.category-wise',compact('category','product','cat','new'));
+    }
 }
