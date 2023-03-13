@@ -83,7 +83,7 @@
                                         $amount = $item->selling_price - $item->discount_price;
                                         $discount =  ($amount/$item->selling_price) * 100;
                                         $category =  App\Models\Category::where('id',$item->category_id)->first();
-
+                                         $vendor =  App\Models\User::where('id',$item->vendor_id)->first();
                                     @endphp
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         @if($item->selling_price == NULL)
@@ -105,7 +105,7 @@
                                         <span class="font-small ml-5 text-muted"> (4.0)</span>
                                     </div>
                                     <div>
-                                        <span class="font-small text-muted">By <a href="{{ route('vendor.details',$vendor->id) }}">{{ $vendor->name }}</a></span>
+                                        <span class="font-small text-muted">By <a href="{{ route('vendor.details',$vendor->name) }}">{{ $vendor->name }}</a></span>
                                     </div>
                                     <div class="product-card-bottom">
                                         @if($item->discount_price == NULL)
@@ -160,7 +160,7 @@
                                 $products = App\Models\Product::where('category_id',$item->id)->where('status','1')->get();
                             @endphp
                         <li>
-                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset($item->cat_image) }}" alt="" />{{ $item->cat_name }}</a><span class="count">{{ count($product) }}</span>
+                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset($item->cat_image) }}" alt="" />{{ $item->cat_name }}</a><span class="count">{{ count($products) }}</span>
                         </li>
                         @endforeach
                     </ul>
