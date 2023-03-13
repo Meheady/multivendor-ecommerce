@@ -76,9 +76,9 @@ class FrontendController extends Controller
     public function catWiseProduct($id,$slug)
     {
         $product = Product::where('category_id',$id)->where('status','1')->get();
-        $category = Category::all();
+        $allCategory = Category::orderBy('cat_name','ASC')->get();
         $cat = Category::find($id);
         $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
-        return view('frontend.product.category-wise',compact('category','product','cat','new'));
+        return view('frontend.product.category-wise',compact('allCategory','product','cat','new'));
     }
 }

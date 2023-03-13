@@ -155,12 +155,14 @@
                 <div class="sidebar-widget widget-category-2 mb-30">
                     <h5 class="section-title style-1 mb-30">Category</h5>
                     <ul>
-                        @foreach($category as $item)
-                            @php
-                                $products = App\Models\Product::where('category_id',$item->id)->where('status','1')->get();
-                            @endphp
+                        @foreach($allCategory as $items)
+
                         <li>
-                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset($item->cat_image) }}" alt="" />{{ $item->cat_name }}</a><span class="count">{{ count($products) }}</span>
+                            @php
+                                $products = App\Models\Product::where('category_id',$items->id)->get();
+
+                            @endphp
+                            <a href="{{ url('product/category/'.$items->id.'/'.$items->category_slug) }}"> <img src="{{ asset($items->cat_image) }}" alt="" />{{ $items->cat_name }}</a><span class="count">{{ count($products) }}</span>
                         </li>
                         @endforeach
                     </ul>
