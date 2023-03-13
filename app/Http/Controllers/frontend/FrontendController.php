@@ -26,7 +26,7 @@ class FrontendController extends Controller
         $specialOffer = Product::where('status',1)->where('special_offer','1')->orderBy('id','DESC')->limit(3)->get();
         $specialDeals = Product::where('status',1)->where('special_deals','1')->orderBy('id','DESC')->limit(3)->get();
         $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
-        $allVendor = User::where('status','active')->where('role','vendor')->orderBy('id','ASC')->limit(3)->get();
+        $allVendor = User::where('status','active')->where('role','vendor')->orderBy('id','ASC')->limit(4)->get();
         return view('frontend.index',compact(
             'skip_cat_0','skip_prod_0',
             'skip_cat_1','skip_prod_1',
@@ -80,5 +80,14 @@ class FrontendController extends Controller
         $cat = Category::find($id);
         $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         return view('frontend.product.category-wise',compact('allCategory','product','cat','new'));
+    }
+    public function subCatWiseProduct($id,$slug)
+    {
+        $product = Product::where('subcategory_id',$id)->where('status','1')->get();
+        $allCategory = Category::orderBy('cat_name','ASC')->get();
+        $subCat = SubCategory::find($id);
+        $cat = Category::find($subCat->category_id);
+        $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.sub-category-wise',compact('allCategory','product','cat','new','subCat'));
     }
 }

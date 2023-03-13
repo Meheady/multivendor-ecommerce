@@ -40,7 +40,7 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">{{ $category->cat_name }}</a>
+                                    <a href="{{ url('product/category/'.$category->id.'/'.$category->cat_slug) }}">{{ $category->cat_name }}</a>
                                 </div>
                                 <h2><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a></h2>
                                 <div class="product-rate-cover">

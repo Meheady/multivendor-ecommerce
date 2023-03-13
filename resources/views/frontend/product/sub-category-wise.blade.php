@@ -5,10 +5,10 @@
             <div class="archive-header">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
-                        <h4 class="mb-15">{{$cat->cat_name}}</h4>
+                        <h4 class="mb-15">{{$subCat->sub_cat_name}}</h4>
                         <div class="breadcrumb">
                             <a href="{{ route('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                            <span></span>  <span></span> {{$cat->cat_name}}
+                            <span></span> {{$cat->cat_name}} <span></span> {{$subCat->sub_cat_name}}
                         </div>
                     </div>
 
@@ -82,8 +82,7 @@
                                     @php
                                         $amount = $item->selling_price - $item->discount_price;
                                         $discount =  ($amount/$item->selling_price) * 100;
-                                        $category =  App\Models\Category::where('id',$item->category_id)->first();
-                                         $vendor =  App\Models\User::where('id',$item->vendor_id)->first();
+                                        $vendor =  App\Models\User::where('id',$item->vendor_id)->first();
                                     @endphp
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         @if($item->selling_price == NULL)
@@ -95,7 +94,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $category->cat_name }}</a>
+                                        <a href="{{ url('product/category/'.$cat->id.'/'.$cat->cat_slug) }}">{{ $cat->cat_name }}</a>
                                     </div>
                                     <h2><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a></h2>
                                     <div class="product-rate-cover">
@@ -157,13 +156,13 @@
                     <ul>
                         @foreach($allCategory as $items)
 
-                        <li>
-                            @php
-                                $products = App\Models\Product::where('category_id',$items->id)->get();
+                            <li>
+                                @php
+                                    $products = App\Models\Product::where('category_id',$items->id)->get();
 
-                            @endphp
-                            <a href="{{ url('product/category/'.$items->id.'/'.$items->cat_slug) }}"> <img src="{{ asset($items->cat_image) }}" alt="" />{{ $items->cat_name }}</a><span class="count">{{ count($products) }}</span>
-                        </li>
+                                @endphp
+                                <a href="{{ url('product/category/'.$items->id.'/'.$items->cat_slug) }}"> <img src="{{ asset($items->cat_image) }}" alt="" />{{ $items->cat_name }}</a><span class="count">{{ count($products) }}</span>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -171,23 +170,23 @@
                 <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                     <h5 class="section-title style-1 mb-30">New products</h5>
                     @foreach($new as $item)
-                    <div class="single-post clearfix">
-                        <div class="image">
-                            <img src="{{asset($item->product_thumbnail)}}" alt="#" />
-                        </div>
-                        <div class="content pt-10">
-                            <h5><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a></h5>
+                        <div class="single-post clearfix">
+                            <div class="image">
+                                <img src="{{asset($item->product_thumbnail)}}" alt="#" />
+                            </div>
+                            <div class="content pt-10">
+                                <h5><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a></h5>
 
-                            @if($item->discount_price == NULL)
-                                <p class="price mb-0 mt-5">{{ $item->selling_price }}</p>
-                            @else
-                                <p class="price mb-0 mt-5">{{ $item->discount_price }}</p>
-                            @endif
-                            <div class="product-rate">
-                                <div class="product-rating" style="width: 90%"></div>
+                                @if($item->discount_price == NULL)
+                                    <p class="price mb-0 mt-5">{{ $item->selling_price }}</p>
+                                @else
+                                    <p class="price mb-0 mt-5">{{ $item->discount_price }}</p>
+                                @endif
+                                <div class="product-rate">
+                                    <div class="product-rating" style="width: 90%"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
@@ -205,3 +204,4 @@
         </div>
     </div>
 @endsection
+
