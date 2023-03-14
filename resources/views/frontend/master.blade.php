@@ -11,6 +11,7 @@
     <meta property="og:type" content="" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('frontend')}}/assets/imgs/theme/favicon.svg" />
     <!-- Template CSS -->
@@ -66,6 +67,73 @@
 <!-- Template  JS -->
 <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
 <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+           headers:{
+               'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+           }
+        });
+        function productView(id) {
+            $.ajax({
+               type:"get",
+                url:'product/view/modal/'+id,
+                dataType:'json',
+                success:function (data){
+                   $('#pname').html(data.product.product_name);
+                   $('#pcat').html(data.category.cat_name);
+                   $('#pbrand').html(data.brand.brand_name);
+                   $('#pcode').html(data.product.product_code);
+                   $('#pimage').attr('src','/'+data.product.product_thumbnail);
+
+                   if(data.product.discount_price == NULL){
+                       $('#oldprice').html('');
+                       $('#pprice').html(data.product.selling_price);
+                   }
+                   else{
+                       $('#oldprice').html(data.product.selling_price);
+                       $('#pprice').html(data.product.discount_price);
+                   }
+                   if(data.product.product_qty > 0){
+                       $('#instock').html('');
+                       $('#outstock').html('');
+                       $('#instock').html('In Stock');
+                   }
+                   else{
+                       $('#instock').html('');
+                       $('#outstock').html('');
+                       $('#instock').html('Out Stock');
+                   }
+
+                    $('#color').empty();
+                   $.each(data.color,function(key,value){
+                       $('#color').append('<option value=" + '+value+' ">' +value+'</option>');
+                       if (data.color == ""){
+                           $('#colorarea').hide();
+                       }
+                       else{
+                           $('#colorarea').show();
+                       }
+                   })
+
+                    $('#size').empty();
+                    $.each(data.size,function(key,value){
+                       $('#size').append('<option value=" + '+value+' ">' +value+'</option>');
+                        if (data.size == ""){
+                            $('#sizearea').hide();
+                        }
+                        else{
+                            $('#sizearea').show();
+                        }
+                   })
+                },
+                error:function(e){
+                   console.log(e);
+                }
+
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -90,4 +90,24 @@ class FrontendController extends Controller
         $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         return view('frontend.product.sub-category-wise',compact('allCategory','product','cat','new','subCat'));
     }
+
+
+    public function productModalView($id)
+    {
+        $product = Product::find($id);
+        $category = Category::find($product->category_id);
+        $brand = Brand::find($product->brand_id);
+        $productColor = explode(',',$product->product_color);
+        $productSize = explode(',',$product->product_size);
+        $data = [
+            'product'=>$product,
+            'category'=>$category,
+            'brand'=>$brand,
+            'pcolor'=>$productColor,
+            'psize'=>$productColor
+        ];
+
+        return response()->json($data);
+
+    }
 }

@@ -180,4 +180,5 @@ Route::controller(FrontendController::class)->group(function (){
     Route::get('/all/vendor/','allVendor')->name('all.vendor');
     Route::get('/product/category/{id}/{slug}','catWiseProduct');
     Route::get('/product/sub-category/{id}/{slug}','subCatWiseProduct');
+    Route::get('/product/view/modal/{id}','productModalView');
 });
