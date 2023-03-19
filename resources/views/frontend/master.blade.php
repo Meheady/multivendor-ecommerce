@@ -67,6 +67,7 @@
 <!-- Template  JS -->
 <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
 <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -135,6 +136,92 @@
 
             });
         }
+
+        //end quick view
+
+        function addToCart (){
+
+            const pId = $('#p_id').val()
+            const pName = $('#pname').html();
+            const pColor = $('#pcolor option:selected').html();
+            const pSize = $('#psize option:selected').html();
+            const pQty = $('#qty').val();
+
+            $.ajax({
+                url: '/cart/data/store/'+ pId,
+               type:'POST',
+               dataType: 'json',
+                data:{
+                    pName:pName,
+                    pColor:pColor,
+                    pSize:pSize,
+                    pQty:pQty,
+                },
+                success:function(data){
+                    $('#closeModal').click();
+
+                    const SweetAlert = Swal.mixin({
+                            position: 'top-end',
+                            toast:true,
+                            showConfirmButton: false,
+                            timer: 3000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        SweetAlert.fire({
+                            type:'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }
+                    else{
+                        SweetAlert.fire({
+                            type:'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function miniCart() {
+            $.ajax({
+                type:'GET',
+                url: '/product/mini/cart',
+                dataType:'json',
+                success: function(data){
+
+                    $('#cartQty').html(data.cartQty);
+                    var miniCartArea = "";
+                    $.each(data.carts,function (key,value) {
+                        miniCartArea += `<ul>
+                                    <li>
+                                        <div class="shopping-cart-img">
+                                            <a style="width:50px;height:50px" href="#"><img alt="Nest" src="/${value.options.image}" /></a>
+                                        </div>
+                                        <div class="shopping-cart-title" style="width:146px;margin:-73px 74px 14px;">
+                                            <h4><a href="shop-product-right.html">${value.name}</a></h4>
+                                            <h3><span>${ value.qty } × </span>${ value.price }</h3>
+                                        </div>
+                                        <div class="shopping-cart-delete" style="margin:-85px 1px 0px;">
+                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>`
+                    })
+                    $('#miniCartArea').html(miniCartArea);
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        }
+        miniCart()
     </script>
 </body>
 

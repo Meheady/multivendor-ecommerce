@@ -184,5 +184,6 @@ Route::controller(FrontendController::class)->group(function (){
     Route::get('/product/view/modal/{id}','productModalView');
 });
 Route::controller(CartController::class)->group(function (){
-    Route::get('/product/details/{id}/{slug}','productDetails');
+    Route::post('/cart/data/store/{id}','addToCart');
+    Route::get('/product/mini/cart','addMiniCart');
 });
