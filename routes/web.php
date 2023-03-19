@@ -13,6 +13,7 @@ use App\Http\Controllers\VendorProductController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -181,4 +182,7 @@ Route::controller(FrontendController::class)->group(function (){
     Route::get('/product/category/{id}/{slug}','catWiseProduct');
     Route::get('/product/sub-category/{id}/{slug}','subCatWiseProduct');
     Route::get('/product/view/modal/{id}','productModalView');
+});
+Route::controller(CartController::class)->group(function (){
+    Route::get('/product/details/{id}/{slug}','productDetails');
 });

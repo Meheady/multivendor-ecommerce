@@ -80,13 +80,15 @@
                 url:'product/view/modal/'+id,
                 dataType:'json',
                 success:function (data){
+                    console.log(data);
+                    $('#p_id').val(data.product.id)
                    $('#pname').html(data.product.product_name);
                    $('#pcat').html(data.category.cat_name);
                    $('#pbrand').html(data.brand.brand_name);
                    $('#pcode').html(data.product.product_code);
                    $('#pimage').attr('src','/'+data.product.product_thumbnail);
 
-                   if(data.product.discount_price == NULL){
+                   if(data.product.discount_price == ''){
                        $('#oldprice').html('');
                        $('#pprice').html(data.product.selling_price);
                    }
@@ -105,10 +107,10 @@
                        $('#instock').html('Out Stock');
                    }
 
-                    $('#color').empty();
-                   $.each(data.color,function(key,value){
-                       $('#color').append('<option value=" + '+value+' ">' +value+'</option>');
-                       if (data.color == ""){
+                    $('#pcolor').empty();
+                   $.each(data.pcolor,function(key,value){
+                       $('#pcolor').append('<option value=" + '+value+' ">' +value+'</option>');
+                       if (data.pcolor == ''){
                            $('#colorarea').hide();
                        }
                        else{
@@ -116,10 +118,10 @@
                        }
                    })
 
-                    $('#size').empty();
-                    $.each(data.size,function(key,value){
-                       $('#size').append('<option value=" + '+value+' ">' +value+'</option>');
-                        if (data.size == ""){
+                    $('#psize').empty();
+                    $.each(data.psize,function(key,value){
+                       $('#psize').append('<option value=" + '+value+' ">' +value+'</option>');
+                        if (data.psize == ''){
                             $('#sizearea').hide();
                         }
                         else{

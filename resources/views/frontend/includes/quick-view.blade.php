@@ -16,14 +16,14 @@
                             <h3 class="title-detail"><a href="#" id="pname" class="text-heading">S</a></h3>
                             <div class="attr-detail attr-size mb-30" id="sizearea">
                             <strong class="mr-10">Size: </strong>
-                            <select name="" class="form-control unicase-form-control" id="size">
+                            <select name="size" class="form-control unicase-form-control" id="psize">
                                 <option selected disabled>Choose size</option>
 
                             </select>
                             </div>
                             <div class="attr-detail attr-size mb-30" id="colorarea">
                             <strong class="mr-10">Color: </strong>
-                            <select name="" class="form-control unicase-form-control" id="color">
+                            <select name="color" class="form-control unicase-form-control" id="pcolor">
                                 <option selected disabled>Choose Color</option>
 
                             </select>
@@ -44,6 +44,7 @@
                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                 </div>
                                 <div class="product-extra-link2">
+                                    <input type="hidden" id="p_id" name="p_id">
                                     <button type="submit" onclick="addToCart()" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                 </div>
                             </div>
@@ -62,8 +63,8 @@
                                         <ul>
                                             <li class="mb-5">Product Code: <span id="pcode" class="text-brand"></span></li>
                                             <li class="mb-5">Stock:
-                                                <span id="instock" class="badge badge-fill badge-success"> Jun 4.2022</span>
-                                                <span id="outstock" class="badge badge-fill badge-danger"> Jun 4.2022</span>
+                                                <span id="instock" class="badge badge-fill text-brand badge-success"> </span>
+                                                <span id="outstock" class="badge badge-fill text-brand badge-danger"></span>
                                             </li>
                                         </ul>
                                     </div>
