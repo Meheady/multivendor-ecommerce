@@ -349,6 +349,40 @@
     </script>
 
     <script type="text/javascript">
+        function addToCompare(pid) {
+
+            $.ajax({
+               type:'POST',
+               dtaType:'json',
+               url:'/add-to-compare/'+pid,
+               success: function (data) {
+
+                   const SweetAlert = Swal.mixin({
+                       position: 'top-end',
+                       toast:true,
+                       showConfirmButton: false,
+                       timer: 3000
+                   })
+                   if($.isEmptyObject(data.error)){
+                       SweetAlert.fire({
+                           type:'success',
+                           icon: 'success',
+                           title: data.success
+                       })
+                   }
+                   else{
+                       SweetAlert.fire({
+                           type:'error',
+                           icon: 'error',
+                           title: data.error
+                       })
+                   }
+               }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
 
         function wishList() {
 
@@ -411,6 +445,129 @@
                 dataType:'json',
                 success:function (data) {
                     wishList();
+                    const SweetAlert = Swal.mixin({
+                        position: 'top-end',
+                        toast:true,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        SweetAlert.fire({
+                            type:'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }
+                    else{
+                        SweetAlert.fire({
+                            type:'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                },
+                error:function(e){
+                    SweetAlert.fire({
+                        position: 'top-end',
+                        timer: 3000,
+                        toast:true,
+                        icon: 'error',
+                        title: e.message
+                    })
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+
+        function compareList() {
+
+            $.ajax({
+                type:'GET',
+                dtaType:'json',
+                url:'/get-compare-data/',
+                success: function (data) {
+
+                   $('.comparecount').html(data.compareQty);
+                    var rows = "";
+                    $.each(data.comparelist,function (key,value) {
+                        rows += `
+                            <tr class="pr_image">
+                            <td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>
+                            <td class="row_img"><img width="300px" height="300px" src="/${value.product.product_thumbnail}" alt="compare-img" /></td>
+
+                        </tr>
+                        <tr class="pr_title">
+                            <td class="text-muted font-sm fw-600 font-heading">Name</td>
+                            <td class="product_name">
+                                <h6><a href="shop-product-full.html" class="text-heading">${value.product.product_name}</a></h6>
+                            </td>
+                        </tr>
+                        <tr class="pr_price">
+                            <td class="text-muted font-sm fw-600 font-heading">Price</td>
+                            <td class="product_price">
+                                ${value.product.discount_price == null
+                            ?`<h3 class="text-brand">${value.product.selling_price}</h3>`:`<h3 class="text-brand">${value.product.discount_price}</h3>`
+                        }
+                            </td>
+
+                        </tr>
+                        <tr class="pr_rating">
+                            <td class="text-muted font-sm fw-600 font-heading">Rating</td>
+                            <td>
+                                <div class="rating_wrap">
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 90%"></div>
+                                    </div>
+                                    <span class="rating_num">(121)</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="description">
+                            <td class="text-muted font-sm fw-600 font-heading">Description</td>
+                            <td class="row_text font-xs">
+                                <p class="font-sm text-muted"> ${value.product.long_desc}</p>
+                            </td>
+
+                        </tr>
+                        <tr class="pr_stock">
+                            <td class="text-muted font-sm fw-600 font-heading">Stock status</td>
+                            <td class="row_stock">
+                                ${value.product.product_qty > 0
+                            ?`<span class="stock-status in-stock mb-0"> In Stock </span>`:`<span class="stock-status out-stock mb-0"> Out Stock </span>`
+                        }
+                            </td>
+                        </tr>
+
+                        <tr class="pr_add_to_cart">
+                            <td class="text-muted font-sm fw-600 font-heading">Buy now</td>
+                            <td class="row_btn">
+                                <button class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</button>
+                            </td>
+
+                        </tr>
+                        <tr class="pr_remove text-muted">
+                            <td class="text-muted font-md fw-600"></td>
+                            <td class="row_remove">
+                                <a type="submit" id="${value.product.id}" onclick="removeCompare(this.id)" class="text-muted"><i class="fi-rs-trash mr-5"></i><span>Remove</span> </a>
+                            </td>
+                        </tr>
+                        `
+                    })
+                    $('#compare').html(rows);
+                }
+            });
+        }
+        compareList();
+
+
+        function removeCompare(id) {
+            $.ajax({
+                type:'GET',
+                url:'/remove/compare/'+id,
+                dataType:'json',
+                success:function (data) {
+                    compareList();
                     const SweetAlert = Swal.mixin({
                         position: 'top-end',
                         toast:true,
