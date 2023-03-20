@@ -111,14 +111,14 @@
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
                                     <img alt="Nest" src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-cart.svg" />
-                                    <span class="pro-count blue" id="cartQty"></span>
+                                    <span class="pro-count blue cartQty"></span>
                                 </a>
                                 <a href="shop-cart.html"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <div id="miniCartArea">
+                                    <div class="miniCartArea"></div>
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
-                                            <h4>Total <span>$4000.00</span></h4>
+                                            <h4>Total <span class="cartTotal">0</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
                                             <a href="shop-cart.html" class="outline">View cart</a>
@@ -294,15 +294,15 @@
                         <div class="header-action-icon-2">
                             <a class="mini-cart-icon" href="#">
                                 <img alt="Nest" src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-cart.svg" />
-                                <span class="pro-count white" id="cartQty"></span>
+                                <span class="pro-count white cartQty"></span>
                             </a>
                             <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                <div id="miniCartArea">
+                                <div class="miniCartArea">
 
                                 </div>
                                 <div class="shopping-cart-footer">
                                     <div class="shopping-cart-total">
-                                        <h4>Total <span>$383.00</span></h4>
+                                        <h4>Total <span class="cartTotal"></span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
                                         <a href="shop-cart.html">View cart</a>

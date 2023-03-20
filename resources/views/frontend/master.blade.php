@@ -159,12 +159,61 @@
                 },
                 success:function(data){
                     $('#closeModal').click();
+                    miniCart();
 
                     const SweetAlert = Swal.mixin({
                             position: 'top-end',
                             toast:true,
                             showConfirmButton: false,
                             timer: 3000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        SweetAlert.fire({
+                            type:'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }
+                    else{
+                        SweetAlert.fire({
+                            type:'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+        //product details add to cart
+        function addToCartPdetails (){
+
+            const pId = $('#d_p_id').val()
+            const pName = $('#dpname').html();
+            const pColor = $('#dpcolor option:selected').html();
+            const pSize = $('#dpsize option:selected').html();
+            const pQty = $('#dqty').val();
+
+            $.ajax({
+                url: '/dcart/data/store/'+ pId,
+                type:'POST',
+                dataType: 'json',
+                data:{
+                    pName:pName,
+                    pColor:pColor,
+                    pSize:pSize,
+                    pQty:pQty,
+                },
+                success:function(data){
+                    miniCart();
+
+                    const SweetAlert = Swal.mixin({
+                        position: 'top-end',
+                        toast:true,
+                        showConfirmButton: false,
+                        timer: 3000
                     })
                     if($.isEmptyObject(data.error)){
                         SweetAlert.fire({
@@ -196,7 +245,8 @@
                 dataType:'json',
                 success: function(data){
 
-                    $('#cartQty').html(data.cartQty);
+                    $('.cartQty').html(data.cartQty);
+                    $('.cartTotal').html(data.cartTotal);
                     var miniCartArea = "";
                     $.each(data.carts,function (key,value) {
                         miniCartArea += `<ul>
@@ -209,19 +259,59 @@
                                             <h3><span>${ value.qty } × </span>${ value.price }</h3>
                                         </div>
                                         <div class="shopping-cart-delete" style="margin:-85px 1px 0px;">
-                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                            <a type="submit" id="${value.rowId}" onclick="miniRemoveCart(this.id)"><i class="fi-rs-cross-small"></i></a>
                                         </div>
-                                    </li>
+                                    </li> <br>
                                 </ul>`
                     })
-                    $('#miniCartArea').html(miniCartArea);
+                    $('.miniCartArea').html(miniCartArea);
                 },
                 error: function (e) {
                     console.log(e);
                 }
             })
         }
-        miniCart()
+        miniCart();
+
+        function miniRemoveCart(id) {
+            $.ajax({
+               type:'GET',
+               url:'/remove/mini-cart/'+id,
+                dataType:'json',
+                success:function (data) {
+                    miniCart();
+                    const SweetAlert = Swal.mixin({
+                        position: 'top-end',
+                        toast:true,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        SweetAlert.fire({
+                            type:'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }
+                    else{
+                        SweetAlert.fire({
+                            type:'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                },
+                error:function(e){
+                    SweetAlert.fire({
+                        position: 'top-end',
+                        timer: 3000,
+                        toast:true,
+                        icon: 'error',
+                        title: e.message
+                    })
+                }
+            });
+        }
     </script>
 </body>
 

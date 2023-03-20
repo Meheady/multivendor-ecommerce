@@ -41,7 +41,7 @@
                                     @else
                                     <span class="stock-status out-stock"> Stock Out </span>
                                     @endif
-                                <h2 class="title-detail">{{ $data['product']['product_name'] }}</h2>
+                                <h2 class="title-detail" id="dpname">{{ $data['product']['product_name'] }}</h2>
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">
@@ -73,7 +73,7 @@
                                     @if($data['product']['product_size'] !== NULL)
                                         <div class="attr-detail attr-size mb-30">
                                             <strong class="mr-10">Size: </strong>
-                                            <select name="" class="form-control unicase-form-control" id="size">
+                                            <select name="" class="form-control unicase-form-control" id="dpsize">
                                                 <option selected disabled>Choose size</option>
                                                 @foreach($data['size'] as $item)
                                                     <option value="{{ $item }}">{{ ucwords($item) }}</option>
@@ -84,7 +84,7 @@
                                     @if($data['product']['product_color'] !== NULL)
                                         <div class="attr-detail attr-size mb-30">
                                             <strong class="mr-10">Color: </strong>
-                                            <select name="" class="form-control unicase-form-control" id="size">
+                                            <select name="" class="form-control unicase-form-control" id="dpcolor">
                                                 <option selected disabled>Choose color</option>
                                                 @foreach($data['color'] as $item)
                                                     <option value="{{ $item }}">{{ ucwords($item) }}</option>
@@ -96,11 +96,12 @@
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                        <input type="text" name="quantity" class="qty-val" value="1" min="1">
+                                        <input type="text" name="quantity" id="dqty" class="qty-val" value="1" min="1">
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-                                        <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                        <input type="hidden" id="d_p_id" name="d_p_id" value="{{ $data['product']['id']  }}">
+                                        <button type="submit" onclick="addToCartPdetails()" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                         <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                     </div>

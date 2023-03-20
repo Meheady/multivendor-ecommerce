@@ -185,5 +185,7 @@ Route::controller(FrontendController::class)->group(function (){
 });
 Route::controller(CartController::class)->group(function (){
     Route::post('/cart/data/store/{id}','addToCart');
+    Route::post('/dcart/data/store/{id}','addToCartDetails');
     Route::get('/product/mini/cart','addMiniCart');
+    Route::get('/remove/mini-cart/{id}','removeMiniCart');
 });
