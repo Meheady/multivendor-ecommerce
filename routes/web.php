@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\WishListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -188,4 +189,8 @@ Route::controller(CartController::class)->group(function (){
     Route::post('/dcart/data/store/{id}','addToCartDetails');
     Route::get('/product/mini/cart','addMiniCart');
     Route::get('/remove/mini-cart/{id}','removeMiniCart');
+});
+
+Route::controller(WishListController::class)->group(function (){
+    Route::post('/add-to-wishlist/{id}','addToWishlist');
 });

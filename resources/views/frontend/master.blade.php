@@ -313,6 +313,42 @@
             });
         }
     </script>
+
+    <script type="text/javascript">
+
+
+        function addTowishList(pid) {
+
+            $.ajax({
+               type:'POST',
+               dtaType:'json',
+               url:'/add-to-wishlist/'+pid,
+               success: function (data) {
+
+                   const SweetAlert = Swal.mixin({
+                       position: 'top-end',
+                       toast:true,
+                       showConfirmButton: false,
+                       timer: 3000
+                   })
+                   if($.isEmptyObject(data.error)){
+                       SweetAlert.fire({
+                           type:'success',
+                           icon: 'success',
+                           title: data.success
+                       })
+                   }
+                   else{
+                       SweetAlert.fire({
+                           type:'error',
+                           icon: 'error',
+                           title: data.error
+                       })
+                   }
+               }
+            });
+        }
+    </script>
 </body>
 
 </html>
