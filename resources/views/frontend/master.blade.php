@@ -315,8 +315,6 @@
     </script>
 
     <script type="text/javascript">
-
-
         function addTowishList(pid) {
 
             $.ajax({
@@ -346,6 +344,103 @@
                        })
                    }
                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        function wishList() {
+
+            $.ajax({
+                type:'GET',
+                dtaType:'json',
+                url:'/get-wishlist-data/',
+                success: function (data) {
+
+                   $('.wishlistcount').html(data.wishQty);
+                    var rows = "";
+                    $.each(data.wishlist,function (key,value) {
+                        rows += `
+                        <tr class="pt-30">
+                            <td class="custome-checkbox pl-30">
+
+                            </td>
+                            <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thumbnail}" alt="#" /></td>
+                            <td class="product-des product-name">
+                                <h6><a class="product-name mb-10" href="shop-product-right.html">${value.product.product_name}</a></h6>
+                                <div class="product-rate-cover">
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 90%"></div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                </div>
+                            </td>
+                            <td class="price" data-title="Price">
+                                   ${value.product.discount_price == null
+                            ?`<h3 class="text-brand">${value.product.selling_price}</h3>`:`<h3 class="text-brand">${value.product.discount_price}</h3>`
+                                    }
+
+                            </td>
+                            <td class="text-center detail-info" data-title="Stock">
+                            ${value.product.product_qty > 0
+                            ?`<span class="stock-status in-stock mb-0"> In Stock </span>`:`<span class="stock-status out-stock mb-0"> Out Stock </span>`
+                            }
+
+                            </td>
+                            <td class="text-right" data-title="Cart">
+                                <button class="btn btn-sm">Add to cart</button>
+                            </td>
+                            <td class="action text-center" data-title="Remove">
+                                <a type="submit" id="${value.id}" onclick="removeWishlist(this.id)" class="text-body"><i class="fi-rs-trash"></i></a>
+                            </td>
+                        </tr>
+                        `
+                    })
+                    $('#wishlist').html(rows);
+                }
+            });
+        }
+        wishList();
+
+
+        function removeWishlist(id) {
+            $.ajax({
+                type:'GET',
+                url:'/remove/wishlist/'+id,
+                dataType:'json',
+                success:function (data) {
+                    wishList();
+                    const SweetAlert = Swal.mixin({
+                        position: 'top-end',
+                        toast:true,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        SweetAlert.fire({
+                            type:'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }
+                    else{
+                        SweetAlert.fire({
+                            type:'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                },
+                error:function(e){
+                    SweetAlert.fire({
+                        position: 'top-end',
+                        timer: 3000,
+                        toast:true,
+                        icon: 'error',
+                        title: e.message
+                    })
+                }
             });
         }
     </script>

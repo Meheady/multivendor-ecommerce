@@ -66,6 +66,7 @@ Route::controller(UserController::class)->middleware(['auth','verified','role:us
     Route::get('/dashboard','dashboard')->name('dashboard');
     Route::post('/user/profile/update','updateProfile')->name('user.profile.update');
     Route::post('/user/change/password','changePassword')->name('user.change.password');
+    Route::get('/wishlist','allWishList')->name('wishlist');
 });
 
 
@@ -189,6 +190,13 @@ Route::controller(CartController::class)->group(function (){
     Route::post('/dcart/data/store/{id}','addToCartDetails');
     Route::get('/product/mini/cart','addMiniCart');
     Route::get('/remove/mini-cart/{id}','removeMiniCart');
+});
+
+Route::controller(WishListController::class)->middleware(['auth','verified','role:user'])->group(function (){
+
+    Route::get('/wishlist','allWishList')->name('wishlist');
+    Route::get('/get-wishlist-data/','getWishList');
+    Route::get('/remove/wishlist/{id}','removeWishList');
 });
 
 Route::controller(WishListController::class)->group(function (){
