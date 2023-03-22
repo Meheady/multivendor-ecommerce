@@ -68,6 +68,11 @@ Route::controller(UserController::class)->middleware(['auth','verified','role:us
     Route::post('/user/profile/update','updateProfile')->name('user.profile.update');
     Route::post('/user/change/password','changePassword')->name('user.change.password');
     Route::get('/wishlist','allWishList')->name('wishlist');
+
+
+    Route::controller(CartController::class)->group(function (){
+        Route::post('/my-all-cart','myCart')->name('mycart');
+    });
 });
 
 
@@ -203,7 +208,7 @@ Route::controller(WishListController::class)->middleware(['auth','verified','rol
 Route::controller(WishListController::class)->group(function (){
     Route::post('/add-to-wishlist/{id}','addToWishlist');
 });
-Route::controller(CompareProductController::class)->group(function (){
+Route::controller(CompareProductController::class)->middleware(['auth','verified','role:user'])->group(function (){
     Route::post('/add-to-compare/{id}','addToCompare');
     Route::get('/compare','allCompareList')->name('compare');
     Route::get('/get-compare-data/','getCompareList');

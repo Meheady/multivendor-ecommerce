@@ -43,7 +43,7 @@ class CompareProductController extends Controller
     {
         $comparelist = CompareProduct::with('product')->where('user_id',Auth::id())->get();
         $compareQty = count($comparelist);
-        return response()->json(['wishlist'=>$comparelist,'wishQty'=>$compareQty]);
+        return response()->json(['comparelist'=>$comparelist,'compareQty'=>$compareQty]);
     }
 
     public function removeCompare($id)

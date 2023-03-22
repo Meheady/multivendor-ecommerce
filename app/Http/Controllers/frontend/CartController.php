@@ -100,4 +100,7 @@ class CartController extends Controller
         return response()->json(['success'=>'Removed product from cart']);
 
     }
+
+
+
 }

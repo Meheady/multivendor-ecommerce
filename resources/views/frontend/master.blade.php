@@ -488,6 +488,7 @@
                 url:'/get-compare-data/',
                 success: function (data) {
 
+                    console.log(data);
                    $('.comparecount').html(data.compareQty);
                     var rows = "";
                     $.each(data.comparelist,function (key,value) {
