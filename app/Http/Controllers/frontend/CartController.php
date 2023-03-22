@@ -101,6 +101,9 @@ class CartController extends Controller
 
     }
 
-
+    public function myCart()
+    {
+        return view('frontend.cart.my-cart');
+    }
 
 }
