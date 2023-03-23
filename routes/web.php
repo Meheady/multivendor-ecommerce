@@ -71,7 +71,11 @@ Route::controller(UserController::class)->middleware(['auth','verified','role:us
 
 
     Route::controller(CartController::class)->group(function (){
-        Route::post('/my-all-cart','myCart')->name('mycart');
+        Route::get('/my-all-cart','myCart')->name('mycart');
+        Route::get('/get-my-cart','getMyCart');
+        Route::get('/remove/my-cart/{id}','removeMyCart');
+        Route::get('/cart-dec/{id}','cartDec');
+        Route::get('/cart-inc/{id}','cartInc');
     });
 });
 
@@ -208,8 +212,10 @@ Route::controller(WishListController::class)->middleware(['auth','verified','rol
 Route::controller(WishListController::class)->group(function (){
     Route::post('/add-to-wishlist/{id}','addToWishlist');
 });
-Route::controller(CompareProductController::class)->middleware(['auth','verified','role:user'])->group(function (){
+Route::controller(CompareProductController::class)->group(function (){
     Route::post('/add-to-compare/{id}','addToCompare');
+});
+Route::controller(CompareProductController::class)->middleware(['auth','verified','role:user'])->group(function (){
     Route::get('/compare','allCompareList')->name('compare');
     Route::get('/get-compare-data/','getCompareList');
     Route::get('/remove/compare/{id}','removeCompare');

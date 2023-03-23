@@ -350,13 +350,13 @@
 
     <script type="text/javascript">
         function addToCompare(pid) {
-
             $.ajax({
                type:'POST',
                dtaType:'json',
                url:'/add-to-compare/'+pid,
                success: function (data) {
 
+                   console.log(data);
                    const SweetAlert = Swal.mixin({
                        position: 'top-end',
                        toast:true,
@@ -599,6 +599,133 @@
                         title: e.message
                     })
                 }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function myCart() {
+            $.ajax({
+                type:'GET',
+                url: '/get-my-cart',
+                dataType:'json',
+                success: function(data){
+
+                    $('.cartQty').html(data.cartQty);
+                    $('.grandTotal').html(data.cartTotal);
+                    var myCartArea = "";
+                    $.each(data.carts,function (key,value) {
+                        myCartArea += `<tr class="pt-30">
+                            <td class="custome-checkbox pl-30">
+
+                            </td>
+                            <td class="image product-thumbnail pt-40"><img src="/${value.options.image}" alt="#"></td>
+                            <td class="product-des product-name">
+                                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="#">${value.name}</a></h6>
+                                <div class="product-rate-cover">
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width:90%">
+                                        </div>
+                                    </div>
+                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                </div>
+                            </td>
+                            <td class="price" data-title="Price">
+                                <h4 class="text-body">${value.price}</h4>
+                            </td>
+                            <td class="size" data-title="size">
+                                   ${value.options.size == null ? `...`: `<h4 class="text-body">${value.options.size}</h4>`}
+                            </td>
+                            <td class="color" data-title="color">
+                                ${value.options.color == null ?
+                                `...`: `<h4 class="text-body">${value.options.color} </h4>`
+                                }
+                            </td>
+                            <td class="text-center detail-info" data-title="Stock">
+                                <div class="detail-extralink mr-15">
+                                    <div class="detail-qty border radius">
+                                        <a type="submit" id="${value.rowId}" onclick="cartDec(this.id)" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                        <input type="text" name="quantity" class="qty-val" value="${value.qty}" min="1">
+                                        <a type="submit" id="${value.rowId}" onclick="cartInc(this.id)"  class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="price" data-title="Price">
+                                <h4 class="text-brand"> $${value.subtotal}</h4>
+                            </td>
+                            <td class="action text-center type="submit" id="${value.rowId}" onclick="removeMyCart(this.id)" data-title="Remove"><a href="#" class="text-body"><i class="fi-rs-trash"></i></a></td>
+                        </tr>`
+                    })
+                    $('#myCart').html(myCartArea);
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        }
+        myCart();
+        function removeMyCart(id) {
+            $.ajax({
+                type:'GET',
+                url:'/remove/my-cart/'+id,
+                dataType:'json',
+                success:function (data) {
+                    myCart();
+                    miniCart();
+                    const SweetAlert = Swal.mixin({
+                        position: 'top-end',
+                        toast:true,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if($.isEmptyObject(data.error)){
+                        SweetAlert.fire({
+                            type:'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }
+                    else{
+                        SweetAlert.fire({
+                            type:'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                },
+                error:function(e){
+                    SweetAlert.fire({
+                        position: 'top-end',
+                        timer: 3000,
+                        toast:true,
+                        icon: 'error',
+                        title: e.message
+                    })
+                }
+            });
+        }
+
+
+        function cartDec(id) {
+            $.ajax({
+               type:'GET',
+               url:'/cart-dec/'+id,
+               dataType:'json',
+               success:function (data) {
+                   miniCart();
+                   myCart();
+               }
+            });
+        }
+        function cartInc(id) {
+            $.ajax({
+               type:'GET',
+               url:'/cart-inc/'+id,
+               dataType:'json',
+               success:function (data) {
+                   miniCart();
+                   myCart();
+               }
             });
         }
     </script>

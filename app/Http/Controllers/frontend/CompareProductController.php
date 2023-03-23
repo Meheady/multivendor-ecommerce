@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompareProductController extends Controller
 {
-    public function addToCompare($id)
+    public function addToCompare(Request $request, $id)
     {
         if (Auth::check()){
             $exist = CompareProduct::where('user_id',Auth::id())->where('product_id',$id)->first();
