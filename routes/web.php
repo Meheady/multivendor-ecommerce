@@ -16,6 +16,8 @@ use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\WishListController;
 use App\Http\Controllers\frontend\CompareProductController;
+use App\Http\Controllers\admin\CouponController;
+use App\Http\Controllers\admin\ShippingAreaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,6 +155,26 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/edit/banner/{id}','editBanner')->name('edit.banner');
         Route::post('/update/banner/{id}','updateBanner')->name('update.banner');
         Route::get('/delete/banner/{id}','deleteBanner')->name('delete.banner');
+      });
+    Route::controller(CouponController::class)->group(function (){
+        Route::get('/all/coupon','allCoupon')->name('all.coupon');
+        Route::get('/create/coupon','createCoupon')->name('create.coupon');
+        Route::post('/store/coupon','storeCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}','editCoupon')->name('edit.coupon');
+        Route::post('/update/coupon/{id}','updateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}','deleteCoupon')->name('delete.coupon');
+      });
+    Route::controller(ShippingAreaController::class)->group(function (){
+        Route::get('/all/division','allDivision')->name('all.division');
+        Route::get('/create/division','createDivision')->name('create.division');
+        Route::get('/store/division','storeDivision')->name('store.division');
+        Route::get('/all/district','allDistrict')->name('all.district');
+        Route::get('/all/state','allState')->name('all.state');
+        Route::get('/create/coupon','createCoupon')->name('create.coupon');
+        Route::post('/store/coupon','storeCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}','editCoupon')->name('edit.coupon');
+        Route::post('/update/coupon/{id}','updateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}','deleteCoupon')->name('delete.coupon');
       });
 });
 
