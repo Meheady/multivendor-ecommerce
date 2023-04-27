@@ -35,10 +35,10 @@
                             @foreach($allData as $data)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$data->cat_name}}</td>
+                                    <td>{{$data->division_name}}</td>
                                     <td>
-                                        <a href="{{route('edit.category',$data->id)}}" class="btn btn-success">Edit</a>
-                                        <a href="{{route('delete.category',$data->id)}}" id="delete" class="delete btn btn-danger">Delete</a>
+                                        <a href="{{route('edit.division',$data->id)}}" class="btn btn-success">Edit</a>
+                                        <a href="{{route('delete.division',$data->id)}}" id="delete" class="delete btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

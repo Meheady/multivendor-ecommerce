@@ -167,14 +167,24 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     Route::controller(ShippingAreaController::class)->group(function (){
         Route::get('/all/division','allDivision')->name('all.division');
         Route::get('/create/division','createDivision')->name('create.division');
-        Route::get('/store/division','storeDivision')->name('store.division');
+        Route::post('/store/division','storeDivision')->name('store.division');
+        Route::get('/edit/division/{id}','editDivision')->name('edit.division');
+        Route::post('/update/division/{id}','updateDivision')->name('update.division');
+        Route::get('/delete/division/{id}','deleteDivision')->name('delete.division');
+
         Route::get('/all/district','allDistrict')->name('all.district');
+        Route::get('/create/district','createDistrict')->name('create.district');
+        Route::post('/store/district','storeDistrict')->name('store.district');
+        Route::get('/edit/district/{id}','editDistrict')->name('edit.district');
+        Route::post('/update/district/{id}','updateDistrict')->name('update.district');
+        Route::get('/delete/district/{id}','deleteDistrict')->name('delete.district');
+
         Route::get('/all/state','allState')->name('all.state');
-        Route::get('/create/coupon','createCoupon')->name('create.coupon');
-        Route::post('/store/coupon','storeCoupon')->name('store.coupon');
-        Route::get('/edit/coupon/{id}','editCoupon')->name('edit.coupon');
-        Route::post('/update/coupon/{id}','updateCoupon')->name('update.coupon');
-        Route::get('/delete/coupon/{id}','deleteCoupon')->name('delete.coupon');
+        Route::get('/create/state','createState')->name('create.state');
+        Route::post('/store/state','storeState')->name('store.state');
+        Route::get('/edit/state/{id}','editState')->name('edit.state');
+        Route::post('/update/state/{id}','updateState')->name('update.state');
+        Route::get('/delete/state/{id}','deleteState')->name('delete.state');
       });
 });
 
