@@ -9,4 +9,9 @@ class ShipDistrict extends Model
 {
     use HasFactory;
     protected  $guarded = [];
+
+    public function division()
+    {
+        return $this->hasOne(ShipDivision::class,'id','division_id');
+    }
 }

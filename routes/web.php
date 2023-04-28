@@ -178,6 +178,7 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/edit/district/{id}','editDistrict')->name('edit.district');
         Route::post('/update/district/{id}','updateDistrict')->name('update.district');
         Route::get('/delete/district/{id}','deleteDistrict')->name('delete.district');
+        Route::get('/ajax-district/{id}','ajaxDistrict')->name('ajax.district');
 
         Route::get('/all/state','allState')->name('all.state');
         Route::get('/create/state','createState')->name('create.state');
