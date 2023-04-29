@@ -233,6 +233,9 @@ Route::controller(CartController::class)->group(function (){
     Route::post('/dcart/data/store/{id}','addToCartDetails');
     Route::get('/product/mini/cart','addMiniCart');
     Route::get('/remove/mini-cart/{id}','removeMiniCart');
+    Route::post('/coupon-apply','couponApply');
+    Route::get('/coupon-calculation','couponCalculation');
+    Route::get('/coupon-remove','couponRemove');
 });
 
 Route::controller(WishListController::class)->middleware(['auth','verified','role:user'])->group(function (){

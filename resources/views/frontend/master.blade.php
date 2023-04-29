@@ -670,6 +670,7 @@
                 url:'/remove/my-cart/'+id,
                 dataType:'json',
                 success:function (data) {
+                    couponCalculation();
                     myCart();
                     miniCart();
                     const SweetAlert = Swal.mixin({
@@ -712,6 +713,7 @@
                url:'/cart-dec/'+id,
                dataType:'json',
                success:function (data) {
+                   couponCalculation();
                    miniCart();
                    myCart();
                }
@@ -723,9 +725,161 @@
                url:'/cart-inc/'+id,
                dataType:'json',
                success:function (data) {
+                   couponCalculation();
                    miniCart();
                    myCart();
                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function applyCoupon() {
+            const coupon = $('#coupon').val()
+            $.ajax({
+                url: "/coupon-apply",
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    coupon: coupon,
+                },
+                success: function (res) {
+                    couponCalculation()
+                    if (res.validity == true){
+                        $('#couponArea').hide()
+                        SweetAlert.fire({
+                            position: 'top-end',
+                            timer: 3000,
+                            toast:true,
+                            type:'success',
+                            showConfirmButton: false,
+                            icon: 'success',
+                            title: res.success
+                        })
+                    }
+                    else{
+                        SweetAlert.fire({
+                            position: 'top-end',
+                            timer: 3000,
+                            toast:true,
+                            showConfirmButton: false,
+                            type:'error',
+                            icon: 'error',
+                            title: res.error
+                        })
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        }
+        function couponCalculation() {
+            $.ajax({
+                url: "/coupon-calculation",
+                type: "get",
+                dataType: 'json',
+                success: function (res) {
+                    if (res.total){
+                        $('#amountArea').html(
+                            `<tbody>
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Subtotal</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end grandTotal">$${res.total}</h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="col" colspan="2">
+                                            <div class="divider-2 mt-10 mb-10"></div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Total</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">$${res.total}</h4>
+                                        </td>
+                                    </tr>
+                                    </tbody>`
+                        )
+                    }
+                    else{
+                        console.log(res)
+                        $('#amountArea').html(
+                            `<tbody>
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Subtotal</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end grandTotal">${res.subTotal}</h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="col" colspan="2">
+                                            <div class="divider-2 mt-10 mb-10"></div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Coupon</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">${res.coupon_name} <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash"></i></a> </h4>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Discount Amount</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">${res.coupon_discount}</h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Grand Total</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">${res.total_amount}</h4>
+                                        </td>
+                                    </tr>
+                                    </tbody>`
+                        )
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        }
+        couponCalculation();
+
+
+        function couponRemove() {
+            $.ajax({
+                type:'GET',
+                url:'/coupon-remove/',
+                dataType:'json',
+                success:function (data) {
+                    couponCalculation();
+                    $('#couponArea').show()
+
+                    SweetAlert.fire({
+                        position: 'top-end',
+                        timer: 3000,
+                        toast:true,
+                        type:'success',
+                        showConfirmButton: false,
+                        icon: 'success',
+                        title: data.success
+                    })
+                }
             });
         }
     </script>
