@@ -38,7 +38,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{ $data->order_date }}</td>
                                     <td>{{ $data->invoice_no }}</td>
-                                    <td>{{ $data->amount }}</td>
+                                    <td>${{ $data->amount }}</td>
                                     <td>{{ $data->payment_method }}</td>
                                     <td>
                                         <span class="badge rounded-pill {{ $data->status == 'pending'? 'bg-danger':"bg-success" }}">{{ $data->status }}</span>
