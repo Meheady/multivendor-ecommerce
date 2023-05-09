@@ -310,7 +310,7 @@
                                 </div>
                                 <div class="shopping-cart-footer">
                                     <div class="shopping-cart-total">
-                                        <h4>Total <span class="cartTotal"></span></h4>
+                                        <h4>Total <span class="cartTotal">0</span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
                                         <a href="shop-cart.html">View cart</a>

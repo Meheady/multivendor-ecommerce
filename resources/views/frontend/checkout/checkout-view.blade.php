@@ -29,10 +29,10 @@
                         @csrf
                         <div class="row">
                             <div class="form-group col-lg-6">
-                                <input type="text" required="" value="{{ Auth::user()->username }}" name="username" placeholder="User Name *">
+                                <input type="text" required value="{{ Auth::user()->username }}" name="username" placeholder="User Name *">
                             </div>
                             <div class="form-group col-lg-6">
-                                <input type="email" required="" value="{{ Auth::user()->email }}" name="email" placeholder="Email *">
+                                <input type="email" required value="{{ Auth::user()->email }}" name="email" placeholder="Email *">
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                         <div class="row shipping_calculator">
                             <div class="form-group col-lg-6">
                                 <div class="custom_select">
-                                    <select name="division" id="division" class="form-control">
+                                    <select required name="division" id="division" class="form-control">
                                         <option value="" selected disabled>Select an Division</option>
                                         @foreach($division as $item)
                                         <option value="{{ $item->id }}">{{ $item->division_name }}</option>
@@ -50,20 +50,20 @@
                                 </div>
                             </div>
                             <div class="form-group col-lg-6">
-                                <input required="" type="text"  name="postcode" placeholder="Post code">
+                                <input required type="text"  name="postcode" placeholder="Post code">
                             </div>
                         </div>
 
                         <div class="row shipping_calculator">
                             <div class="form-group col-lg-6">
                                 <div class="custom_select">
-                                    <select class="form-control" id="district">
+                                    <select name="district" required class="form-control" id="district">
                                         <option value="" disabled selected>Select District </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group col-lg-6">
-                                <input required="" type="text" value="{{ Auth::user()->phone }}" name="phone" placeholder="Phone *">
+                                <input required type="text" value="{{ Auth::user()->phone }}" name="phone" placeholder="Phone *">
                             </div>
                         </div>
 
@@ -71,14 +71,14 @@
                         <div class="row shipping_calculator">
                             <div class="form-group col-lg-6">
                                 <div class="custom_select">
-                                    <select id="state" class="form-control">
+                                    <select name="state" required id="state" class="form-control">
                                         <option value="" disabled selected>Select State </option>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group col-lg-6">
-                                <input required="" type="text" value="{{ Auth::user()->address }}" name="address" placeholder="Address *">
+                                <input required type="text" value="{{ Auth::user()->address }}" name="address" placeholder="Address *">
                             </div>
                         </div>
 

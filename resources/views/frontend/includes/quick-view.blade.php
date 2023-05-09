@@ -67,7 +67,7 @@
                                                 <span id="instock" class="badge badge-fill text-brand badge-success"> </span>
                                                 <span id="outstock" class="badge badge-fill text-brand badge-danger"></span>
                                             </li>
-                                            <input type="hidden" id="vendor_id">
+                                            <input type="hidden" name="vendor_id" id="vendor_id">
                                         </ul>
                                     </div>
                                 </div>

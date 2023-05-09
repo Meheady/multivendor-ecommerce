@@ -842,7 +842,7 @@
                                             <h6 class="text-muted">Discount Amount</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">${res.coupon_discount}</h4>
+                                            <h4 class="text-brand text-end">${res.discount_amount}</h4>
                                         </td>
                                     </tr>
                                     <tr>

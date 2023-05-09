@@ -249,6 +249,7 @@ Route::controller(CheckoutController::class)->group(function (){
 });
 Route::controller(StripeController::class)->group(function (){
     Route::post('/stripe-order','stripeOrder')->name('stripe.order');
+    Route::post('/cash-order','cashOrder')->name('cash.order');
 });
 
 Route::controller(WishListController::class)->middleware(['auth','verified','role:user'])->group(function (){

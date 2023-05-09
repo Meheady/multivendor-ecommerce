@@ -125,6 +125,16 @@
                                     Credit or debit card
                                 </label>
 
+                                <input type="hidden" name="name" value="{{ $data['name'] }}">
+                                <input type="hidden" name="email" value="{{ $data['email'] }}">
+                                <input type="hidden" name="phone" value="{{ $data['phone'] }}">
+                                <input type="hidden" name="postcode" value="{{ $data['postcode'] }}">
+                                <input type="hidden" name="division" value="{{ $data['division'] }}">
+                                <input type="hidden" name="district" value="{{ $data['district'] }}">
+                                <input type="hidden" name="state" value="{{ $data['state'] }}">
+                                <input type="hidden" name="address" value="{{ $data['address'] }}">
+                                <input type="hidden" name="notes" value="{{ $data['notes'] }}">
+
                                 <div id="card-element">
                                     <!-- A Stripe Element will be inserted here. -->
                                 </div>
