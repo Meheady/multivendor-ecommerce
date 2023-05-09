@@ -129,8 +129,8 @@
                                             <h4>Total <span class="cartTotal">0</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{ route('mycart') }}" class="outline">View cart</a>
+                                            <a href="{{ route('checkout.page') }}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>

@@ -18,6 +18,8 @@ use App\Http\Controllers\frontend\WishListController;
 use App\Http\Controllers\frontend\CompareProductController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\ShippingAreaController;
+use App\Http\Controllers\frontend\CheckoutController;
+use App\Http\Controllers\frontend\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -236,6 +238,17 @@ Route::controller(CartController::class)->group(function (){
     Route::post('/coupon-apply','couponApply');
     Route::get('/coupon-calculation','couponCalculation');
     Route::get('/coupon-remove','couponRemove');
+
+    Route::get('/checkout-page','checkOutPage')->name('checkout.page');
+});
+Route::controller(CheckoutController::class)->group(function (){
+    Route::get('/ajax-get-district/{id}','getDistrict');
+    Route::get('/ajax-get-state/{id}','getState');
+    Route::post('/checkout-store','checkoutStore')->name('checkout.store');
+    Route::post('/stripe-order','stripeOrder')->name('stripe.order');
+});
+Route::controller(StripeController::class)->group(function (){
+    Route::post('/stripe-order','stripeOrder')->name('stripe.order');
 });
 
 Route::controller(WishListController::class)->middleware(['auth','verified','role:user'])->group(function (){

@@ -122,6 +122,7 @@
                                         <li class="mb-5">Product Code: <a href="#">{{ $data['product']['product_code'] }}</a></li>
                                         <li class="mb-5">Tags: <a href="#" rel="tag"></a>, <a href="#" rel="tag">{{ $data['product']['product_tags'] }}</a>, <a href="#" rel="tag">Brown</a></li>
                                         <li>Stock:<span class="in-stock text-brand ml-5">{{ $data['product']['product_qtu'] }} Items In Stock</span></li>
+                                        <input type="hidden" id="dvendor_id">
                                     </ul>
                                 </div>
                             </div>

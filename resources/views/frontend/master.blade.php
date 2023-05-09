@@ -68,7 +68,6 @@
 <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
 <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script type="text/javascript">
         $.ajaxSetup({
            headers:{
@@ -88,6 +87,7 @@
                    $('#pbrand').html(data.brand.brand_name);
                    $('#pcode').html(data.product.product_code);
                    $('#pimage').attr('src','/'+data.product.product_thumbnail);
+                   $('#vendor_id').val(data.product.vendor_id);
 
                    if(data.product.discount_price == ''){
                        $('#oldprice').html('');
@@ -146,6 +146,7 @@
             const pColor = $('#pcolor option:selected').html();
             const pSize = $('#psize option:selected').html();
             const pQty = $('#qty').val();
+            const vendorId = $('#vendor_id').val();
 
             $.ajax({
                 url: '/cart/data/store/'+ pId,
@@ -156,6 +157,7 @@
                     pColor:pColor,
                     pSize:pSize,
                     pQty:pQty,
+                    vendorId: vendorId
                 },
                 success:function(data){
                     $('#closeModal').click();
@@ -195,6 +197,7 @@
             const pColor = $('#dpcolor option:selected').html();
             const pSize = $('#dpsize option:selected').html();
             const pQty = $('#dqty').val();
+            const vendorId = $('#dvendor_id').val();
 
             $.ajax({
                 url: '/dcart/data/store/'+ pId,
@@ -205,6 +208,7 @@
                     pColor:pColor,
                     pSize:pSize,
                     pQty:pQty,
+                    vendorId:vendorId,
                 },
                 success:function(data){
                     miniCart();
