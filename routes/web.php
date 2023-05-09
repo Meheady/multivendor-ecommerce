@@ -18,6 +18,7 @@ use App\Http\Controllers\frontend\WishListController;
 use App\Http\Controllers\frontend\CompareProductController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\ShippingAreaController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\StripeController;
 
@@ -189,6 +190,10 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::post('/update/state/{id}','updateState')->name('update.state');
         Route::get('/delete/state/{id}','deleteState')->name('delete.state');
       });
+
+    Route::controller(OrderController::class)->group(function (){
+        Route::get('/pending/order','pendingOrder')->name('pending.order');
+    });
 });
 
 Route::get('/vendor/login',[VendorController::class,'vendorLogin'])->name('vendor.login');
