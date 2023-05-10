@@ -180,4 +180,8 @@ class Product extends Model
           $product->created_at = Carbon::now();
           $product->save();
     }
+    public  function vendor()
+    {
+        return $this->belongsTo(User::class,'vendor_id','id');
+    }
 }

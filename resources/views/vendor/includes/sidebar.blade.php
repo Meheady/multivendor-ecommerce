@@ -42,10 +42,9 @@
                 <div class="menu-title">Manage Order</div>
             </a>
             <ul>
-                <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>All Product</a>
+                <li> <a href="{{route('vendor.order')}}"><i class="bx bx-right-arrow-alt"></i>Vendor order</a>
                 </li>
-                <li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
-                </li>
+
             </ul>
         </li>
         @endif

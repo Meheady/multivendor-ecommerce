@@ -21,6 +21,8 @@ use App\Http\Controllers\admin\ShippingAreaController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\StripeController;
+use App\Http\Controllers\VendorOrderController;
+use App\Http\Controllers\AllUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +83,12 @@ Route::controller(UserController::class)->middleware(['auth','verified','role:us
         Route::get('/remove/my-cart/{id}','removeMyCart');
         Route::get('/cart-dec/{id}','cartDec');
         Route::get('/cart-inc/{id}','cartInc');
+    });
+    Route::controller(AllUserController::class)->group(function (){
+        Route::get('/user-account','userAccount')->name('user.account');
+        Route::get('/change-password','changePassword')->name('user.change.password');
+        Route::get('/user-order','userOrder')->name('user.order');
+        Route::get('/user-order-details/{id}','userOrderDetails')->name('user.order.details');
     });
 });
 
@@ -223,6 +231,10 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
         Route::post('/update/vendor/product-thumb/{id}','updateVendorProductThumb')->name('update.vendor.product.thumb');
         Route::post('/update/vendor/product-multimage/','updateVendorProductKultimg')->name('update.vendor.product.multimg');
     });
+    Route::controller(VendorOrderController::class)->group(function (){
+        Route::get('/vendor/order','vendorOrder')->name('vendor.order');
+
+       });
 });
 
 //frontend routes
