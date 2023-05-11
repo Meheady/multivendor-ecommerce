@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AllUserController extends Controller
 {
@@ -33,5 +34,18 @@ class AllUserController extends Controller
         $orderItems = OrderItem::with('product')->where('order_id',$id)->get();
 
         return view('frontend.user.order-details',compact('order','orderItems'));
+    }
+    public function invoiceDownload($id)
+    {
+        $uid = Auth::user()->id;
+        $order = Order::with('division','district','state','user')->where('id',$id)->where('user_id', $uid)->first();
+        $orderItems = OrderItem::with('product')->where('order_id',$id)->get();
+
+        $pdf = Pdf::loadView('frontend.user.invoice',compact('order','orderItems'))
+            ->setPaper('a4' )->setOption([
+                'tempDir'=> public_path(),
+                'chroot'=> public_path(),
+            ]);
+        return $pdf->download('invoice.pdf');
     }
 }

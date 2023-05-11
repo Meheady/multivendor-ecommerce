@@ -89,6 +89,7 @@ Route::controller(UserController::class)->middleware(['auth','verified','role:us
         Route::get('/change-password','changePassword')->name('user.change.password');
         Route::get('/user-order','userOrder')->name('user.order');
         Route::get('/user-order-details/{id}','userOrderDetails')->name('user.order.details');
+        Route::get('/user-invoice-download/{id}','invoiceDownload')->name('user.invoice.download');
     });
 });
 

@@ -87,7 +87,7 @@
                                                             @endif
                                                         </td>
                                                         <td><a href="{{ route('user.order.details',$item->id) }}" class="btn-small btn btn-success d-block">View</a></td>
-                                                        <td><a href="#" class="btn-small btn btn-Info d-block">Invoice</a></td>
+                                                        <td><a href="{{ route('user.invoice.download',$item->id) }}" class="btn-small btn btn-Info d-block">Invoice</a></td>
                                                     </tr>
                                                     @endforeach
                                                     </tbody>
