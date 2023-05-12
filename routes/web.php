@@ -202,6 +202,10 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
 
     Route::controller(OrderController::class)->group(function (){
         Route::get('/pending/order','pendingOrder')->name('pending.order');
+        Route::get('/confirm/order','confirmOrder')->name('confirm.order');
+        Route::get('/processing/order','processingOrder')->name('processing.order');
+        Route::get('/delivered/order','deliveredOrder')->name('delivered.order');
+        Route::get('/admin/order/details/{id}','orderDetails')->name('admin.order.details');
     });
 });
 

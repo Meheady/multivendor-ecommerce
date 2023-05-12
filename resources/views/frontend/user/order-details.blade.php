@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <div class="page-content pt-50 pb-150">
+    <div class="page-content pt-50 pb-30">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 m-auto">
@@ -90,7 +90,7 @@
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4>rder Details </h4>
+                                            <h4>Order Details </h4>
                                             <span class="text-info">{{ $order->invoice_no }}</span>
                                         </div>
                                         <div class="card-body">
@@ -134,7 +134,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12">
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
@@ -223,6 +223,22 @@
                     </table>
                 </div>
             </div>
+
         </div>
+        @if($order->status == 'delivered')
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <form action="">
+                    <div class="form-group">
+                        <label for="">Return Reason</label>
+                        <textarea name="reason" id="" cols="30" rows="3" class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+        @else
+        @endif
     </div>
 @endsection

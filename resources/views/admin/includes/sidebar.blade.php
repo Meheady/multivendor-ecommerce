@@ -133,7 +133,13 @@
                 <div class="menu-title">Manage Order</div>
             </a>
             <ul>
-                <li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Pendig Order</a>
+                <li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
+                </li>
+                <li> <a href="{{ route('confirm.order') }}"><i class="bx bx-right-arrow-alt"></i>Confirm Order</a>
+                </li>
+                <li> <a href="{{ route('processing.order') }}"><i class="bx bx-right-arrow-alt"></i>Processing Order</a>
+                </li>
+                <li> <a href="{{ route('delivered.order') }}"><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
                 </li>
             </ul>
         </li>
