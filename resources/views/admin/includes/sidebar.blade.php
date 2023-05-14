@@ -143,6 +143,19 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-menu"></i>
+                </div>
+                <div class="menu-title">Return Order</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('return.request') }}"><i class="bx bx-right-arrow-alt"></i>Return Request</a>
+                </li>
+                <li> <a href="{{ route('confirm.return') }}"><i class="bx bx-right-arrow-alt"></i>Confirm Return</a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-label">Setup</li>
         <li>
             <a href="javascript:;" class="has-arrow">

@@ -11,7 +11,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Confirm Order  <span class="badge rounded-pill bg-info">{{count($allData)}}</span></li>
+                        <li class="breadcrumb-item active" aria-current="page">All Return Request  <span class="badge rounded-pill bg-info">{{count($allData)}}</span></li>
                     </ol>
                 </nav>
             </div>
@@ -28,6 +28,7 @@
                                 <th>Invoice</th>
                                 <th>Amount</th>
                                 <th>Payment</th>
+                                <th>Return reason</th>
                                 <th>status</th>
                                 <th>Action</th>
                             </tr>
@@ -40,12 +41,13 @@
                                     <td>{{ $data->invoice_no }}</td>
                                     <td>${{ $data->amount }}</td>
                                     <td>{{ $data->payment_method }}</td>
+                                    <td>{{ $data->return_reason }}</td>
                                     <td>
-                                        <span class="badge rounded-pill {{ $data->status == 'pending'? 'bg-danger':"bg-success" }}">{{ $data->status }}</span>
+                                        <span class="badge rounded-pill bg-info">Pending</span>
                                     </td>
                                     <td>
                                         <a href="{{route('admin.order.details',$data->id)}}" class="btn btn-small btn-info">View</a>
-                                        <a href="{{route('admin.invoice.download',$data->id)}}" class="btn btn-small btn-warning">Invoice</a>
+                                        <a href="{{route('return.approve',$data->id)}}" class="confirm btn btn-small btn-info">approve</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,4 +59,5 @@
         </div>
     </div>
 @endsection
+
 

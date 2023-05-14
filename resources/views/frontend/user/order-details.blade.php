@@ -23,6 +23,9 @@
                                         <a class="nav-link active" href="{{ route('user.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('view.return.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Return Order</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link"  href="#track-orders" ><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
                                     </li>
                                     <li class="nav-item">
@@ -226,9 +229,11 @@
 
         </div>
         @if($order->status == 'delivered')
+            @if($order->return_reason == null )
         <div class="row">
             <div class="col-lg-7 mx-auto">
-                <form action="">
+                <form action="{{ route('return.order',$order->id) }}" method="post">
+                    @csrf
                     <div class="form-group">
                         <label for="">Return Reason</label>
                         <textarea name="reason" id="" cols="30" rows="3" class="form-control"></textarea>
@@ -238,6 +243,9 @@
                 </form>
             </div>
         </div>
+            @else
+         <h4 class="text-center text-danger">You are already request for return</h4>
+            @endif
         @else
         @endif
     </div>

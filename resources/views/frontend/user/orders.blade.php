@@ -23,6 +23,9 @@
                                         <a class="nav-link active" href="{{ route('user.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link " href="{{ route('view.return.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Return Order</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link"  href="#track-orders" ><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
                                     </li>
                                     <li class="nav-item">
@@ -80,10 +83,12 @@
                                                             @elseif($item->status == 'confirm')
                                                                 <span class="badge rounded-pill bg-info">{{ $item->status }}</span>
                                                             @elseif($item->status == 'processing')
-                                                                <span class="badge rounded-pill bg-facebook">{{ $item->status }}</span>
+                                                                <span class="badge rounded-pill bg-primary">{{ $item->status }}</span>
                                                             @elseif($item->status == 'delivered')
                                                                 <span class="badge rounded-pill bg-success">{{ $item->status }}</span>
-
+                                                                @if($item->return_order == 1)
+                                                                    <span class="badge rounded-pill bg-danger">Return</span>
+                                                                @endif
                                                             @endif
                                                         </td>
                                                         <td><a href="{{ route('user.order.details',$item->id) }}" class="btn-small btn btn-success d-block">View</a></td>

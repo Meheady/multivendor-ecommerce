@@ -19,6 +19,7 @@ use App\Http\Controllers\frontend\CompareProductController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\ShippingAreaController;
 use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\ReturnController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\StripeController;
 use App\Http\Controllers\VendorOrderController;
@@ -90,6 +91,8 @@ Route::controller(UserController::class)->middleware(['auth','verified','role:us
         Route::get('/user-order','userOrder')->name('user.order');
         Route::get('/user-order-details/{id}','userOrderDetails')->name('user.order.details');
         Route::get('/user-invoice-download/{id}','invoiceDownload')->name('user.invoice.download');
+        Route::post('/return/order/{id}','returnOrder')->name('return.order');
+        Route::get('/view/return/order/','ViewReturnOrder')->name('view.return.order');
     });
 });
 
@@ -205,7 +208,14 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/confirm/order','confirmOrder')->name('confirm.order');
         Route::get('/processing/order','processingOrder')->name('processing.order');
         Route::get('/delivered/order','deliveredOrder')->name('delivered.order');
-        Route::get('/admin/order/details/{id}','orderDetails')->name('admin.order.details');
+        Route::get('/order/details/{id}','orderDetails')->name('admin.order.details');
+        Route::get('/change/status/{id}','changeOrderStatus')->name('change.status');
+        Route::get('/invoice/download/{id}','invoiceDownload')->name('admin.invoice.download');
+    });
+    Route::controller(ReturnController::class)->group(function (){
+        Route::get('/return/request','returnRequest')->name('return.request');
+        Route::get('/confirm/return/','confirmReturn')->name('confirm.return');
+        Route::get('/approve/return/{id}','approveReturn')->name('return.approve');
     });
 });
 
@@ -238,6 +248,7 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
     });
     Route::controller(VendorOrderController::class)->group(function (){
         Route::get('/vendor/order','vendorOrder')->name('vendor.order');
+        Route::get('/return/order','vendorReturnOrder')->name('vendor.return.order');
 
        });
 });

@@ -4,7 +4,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> My Account
+                <span></span> Pages <span></span> My Account
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                                         <a class="nav-link" href="{{ route('user.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('view.return.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Return Order</a>
+                                        <a class="nav-link active" href="{{ route('view.return.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Return Order</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link"  href="#track-orders" ><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
@@ -32,7 +32,7 @@
                                         <a class="nav-link" href="#address" ><i class="fi-rs-marker mr-10"></i>My Address</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="{{ route('user.change.password') }}" ><i class="fi-rs-key mr-10"></i>Change Password</a>
+                                        <a class="nav-link" href="{{ route('user.change.password') }}" ><i class="fi-rs-key mr-10"></i>Change Password</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link"  href="{{ route('user.account') }}" ><i class="fi-rs-user mr-10"></i>Account details</a>
@@ -53,41 +53,46 @@
                                 <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Change Password</h5>
+                                            <h3 class="mb-0">Your Orders</h3>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" action="{{ route('user.change.password') }}" name="enq" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-3">
-                                                            <h6 class="mb-0">Old Password</h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            <input type="password" name="oldpass" class="form-control"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-3">
-                                                            <h6 class="mb-0">New Password</h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            <input type="password" class="form-control" name="newpass" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-3">
-                                                            <h6 class="mb-0">Confirm Password</h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            <input type="password" class="form-control" name="newpass_confirmation" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Order</th>
+                                                        <th>Date</th>
+                                                        <th>Amount</th>
+                                                        <th>Payment</th>
+                                                        <th>Invoice</th>
+                                                        <th>Return Reason</th>
+                                                        <th>Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($orders as $item)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $item->order_date }}</td>
+                                                            <td>${{ $item->amount }}</td>
+                                                            <td>{{ $item->payment_method }}</td>
+                                                            <td>{{ $item->invoice_no }}</td>
+                                                            <td>{{ $item->return_reason }}</td>
+                                                            <td>
+                                                                @if($item->return_order == 1)
+                                                                    <span class="badge rounded-pill bg-warning">Pending</span>
+                                                                @elseif($item->retrun_order == 2)
+                                                                    <span class="badge rounded-pill bg-info">Confirm</span>
+                                                                @endif
+                                                            </td>
+                                                            <td><a href="{{ route('user.order.details',$item->id) }}" class="btn-small btn btn-success d-block">View</a></td>
+                                                            <td><a href="{{ route('user.invoice.download',$item->id) }}" class="btn-small btn btn-Info d-block">Invoice</a></td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +102,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
 @section('script')
@@ -113,3 +117,4 @@
         });
     </script>
 @endsection
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,5 +41,38 @@ class OrderController extends Controller
         $orderItems = OrderItem::with('product')->where('order_id',$id)->get();
 
         return view('admin.order.details',compact('order','orderItems'));
+    }
+
+    public function changeOrderStatus($id)
+    {
+        $order = Order::findOrFail($id);
+
+        if($order->status == 'pending'){
+            $order->status = 'confirm';
+            $order->save();
+            return redirect()->route('pending.order')->with('success','Order confirm successfully');
+        }
+        elseif($order->status == 'confirm'){
+            $order->status = 'processing';
+            $order->save();
+            return redirect()->route('confirm.order')->with('success','Order processing successfully');
+        }elseif($order->status == 'processing'){
+            $order->status = 'delivered';
+            $order->save();
+            return redirect()->route('processing.order')->with('success','Order delivered successfully');
+        }
+    }
+
+    public function invoiceDownload($id)
+    {
+        $order = Order::with('division','district','state','user')->where('id',$id)->first();
+        $orderItems = OrderItem::with('product')->where('order_id',$id)->get();
+
+        $pdf = Pdf::loadView('admin.order.invoice',compact('order','orderItems'))
+            ->setPaper('a4' )->setOption([
+                'tempDir'=> public_path(),
+                'chroot'=> public_path(),
+            ]);
+        return $pdf->download($order->invoice_no.'.pdf');
     }
 }

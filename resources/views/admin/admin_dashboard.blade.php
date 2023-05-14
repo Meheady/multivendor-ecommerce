@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{asset('admin')}}/assets/css/header-colors.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <title>Admin Dashboard</title>
 </head>
 
@@ -74,6 +75,7 @@
 <script src="{{asset('admin')}}/assets/plugins/input-tags/js/tagsinput.js"></script>
 <script src="{{asset('admin')}}/assets/js/jquery.richtext.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script>
     $(function() {
         $(".knob").knob();
@@ -131,6 +133,21 @@
             }
         })
     });
+</script>
+
+<script>
+        $(".confirm").confirm({
+            title: 'Confirm!',
+            content: 'Are you confirm do this action ?',
+            buttons: {
+                confirm: function () {
+                    location.href = this.$target.attr('href');
+                },
+                cancel: function () {
+                    return false;
+                },
+            }
+        });
 </script>
 
 @yield('script')

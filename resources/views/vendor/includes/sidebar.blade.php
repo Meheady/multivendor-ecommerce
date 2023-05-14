@@ -44,7 +44,8 @@
             <ul>
                 <li> <a href="{{route('vendor.order')}}"><i class="bx bx-right-arrow-alt"></i>Vendor order</a>
                 </li>
-
+                <li> <a href="{{route('vendor.return.order')}}"><i class="bx bx-right-arrow-alt"></i>Vendor order</a>
+                </li>
             </ul>
         </li>
         @endif
