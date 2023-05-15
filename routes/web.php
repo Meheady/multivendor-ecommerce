@@ -248,7 +248,9 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
     });
     Route::controller(VendorOrderController::class)->group(function (){
         Route::get('/vendor/order','vendorOrder')->name('vendor.order');
+        Route::get('/vendor/order/details/{id}','vendorOrderDetails')->name('vendor.order.details');
         Route::get('/return/order','vendorReturnOrder')->name('vendor.return.order');
+        Route::get('/confirm/return/order','vendorConfirmReturnOrder')->name('vendor.return.confirm.order');
 
        });
 });

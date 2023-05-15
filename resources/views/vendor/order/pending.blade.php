@@ -43,7 +43,7 @@
                                         <span class="badge rounded-pill {{ $data->order->status == 'pending'? 'bg-danger':"bg-success" }}">{{ $data->order->status }}</span>
                                     </td>
                                     <td>
-                                        <a href="{{route('edit.product',$data->id)}}" class="btn btn-small btn-info">View</a>
+                                        <a href="{{route('vendor.order.details',$data->order->id)}}" class="btn btn-small btn-info">View</a>
                                     </td>
                                 </tr>
                             @endforeach

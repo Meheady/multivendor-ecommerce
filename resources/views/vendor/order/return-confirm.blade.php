@@ -10,7 +10,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Pending Return</li>
+                        <li class="breadcrumb-item active" aria-current="page">Confirm Return</li>
                     </ol>
                 </nav>
             </div>
@@ -35,21 +35,21 @@
                             <tbody>
                             @foreach($allData as $data)
 
-                                @if($data->order->return_order == '1')
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{ $data->order->order_date }}</td>
-                                    <td>{{ $data->order->invoice_no }}</td>
-                                    <td>${{ $data->order->amount }}</td>
-                                    <td>{{ $data->order->payment_method }}</td>
-                                    <td>{{ $data->order->return_reason }}</td>
-                                    <td>
-                                        <span class="badge rounded-pill {{ $data->order->return_order == '1'? 'bg-info':"bg-success" }}">Pending</span>
-                                    </td>
-                                    <td>
-                                        <a href="{{route('vendor.order.details',$data->order->id)}}" class="btn btn-small btn-info">View</a>
-                                    </td>
-                                </tr>
+                                @if($data->order->return_order == '2')
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{ $data->order->order_date }}</td>
+                                        <td>{{ $data->order->invoice_no }}</td>
+                                        <td>${{ $data->order->amount }}</td>
+                                        <td>{{ $data->order->payment_method }}</td>
+                                        <td>{{ $data->order->return_reason }}</td>
+                                        <td>
+                                            <span class="badge rounded-pill {{ $data->order->return_order == '2'? 'bg-success':"bg-success" }}">Confirm</span>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('vendor.order.details',$data->order->id)}}" class="btn btn-small btn-info">View</a>
+                                        </td>
+                                    </tr>
                                 @endif
                             @endforeach
                             </tbody>
@@ -60,5 +60,6 @@
         </div>
     </div>
 @endsection
+
 
 

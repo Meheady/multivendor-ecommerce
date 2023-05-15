@@ -15,16 +15,27 @@ class VendorOrderController extends Controller
 
         return view('vendor.order.pending',compact('allData'));
     }
+    public function vendorOrderDetails($id)
+    {
+        $order = Order::with('division','district','state','user')->where('id',$id)->first();
+        $orderItems = OrderItem::with('product')->where('order_id',$id)->get();
+
+        return view('vendor.order.details',compact('order','orderItems'));
+    }
     public function vendorReturnOrder()
     {
         $allData = OrderItem::where('vendor_id', Auth::user()->id)
-            ->with(['order' => function($query) {
-                $query->where('return_order', "2");
-            }])
+            ->with('order')
             ->orderBy('id', 'desc')
             ->get();
-
-
         return view('vendor.order.return',compact('allData'));
+    }
+    public function vendorConfirmReturnOrder()
+    {
+        $allData = OrderItem::where('vendor_id', Auth::user()->id)
+            ->with('order')
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('vendor.order.return-confirm',compact('allData'));
     }
 }
