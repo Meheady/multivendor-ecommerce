@@ -156,6 +156,17 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-menu"></i>
+                </div>
+                <div class="menu-title">Manage Report</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('report.view') }}"><i class="bx bx-right-arrow-alt"></i>Report View</a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-label">Setup</li>
         <li>
             <a href="javascript:;" class="has-arrow">

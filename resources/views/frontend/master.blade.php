@@ -17,6 +17,11 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/plugins/animate.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/main.css?v=5.3" />
+    <style>
+        a#xa31cundpni1684174496011 {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>

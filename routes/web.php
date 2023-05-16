@@ -20,6 +20,7 @@ use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\ShippingAreaController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ReturnController;
+use App\Http\Controllers\admin\ReportController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\StripeController;
 use App\Http\Controllers\VendorOrderController;
@@ -216,6 +217,12 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/return/request','returnRequest')->name('return.request');
         Route::get('/confirm/return/','confirmReturn')->name('confirm.return');
         Route::get('/approve/return/{id}','approveReturn')->name('return.approve');
+    });
+    Route::controller(ReportController::class)->group(function (){
+        Route::get('/report-view','reportView')->name('report.view');
+        Route::post('/report-monthly','reportMonthly')->name('report.monthly');
+        Route::post('/report-daily','reportDaily')->name('report.daily');
+        Route::post('/report-yearly','reportYearly')->name('report.yearly');
     });
 });
 
