@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">Search By Month</div>
-                        <form action="">
+                        <form action="{{ route('report.monthly') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="">Select month</label>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Select Year</label>
-                                <select name="month" id="" class="form-control">
+                                <select name="year" id="" class="form-control">
                                     <option value="2022">2022</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
@@ -80,11 +80,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">Search By Year</div>
-                        <form action="">
+                        <form action="{{ route('report.yearly') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="">Select Year</label>
-                                <select name="month" id="" class="form-control">
+                                <select name="year" id="" class="form-control">
                                     <option value="2022">2022</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>

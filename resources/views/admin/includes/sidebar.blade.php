@@ -165,6 +165,21 @@
             <ul>
                 <li> <a href="{{ route('report.view') }}"><i class="bx bx-right-arrow-alt"></i>Report View</a>
                 </li>
+                <li> <a href="{{ route('get.report.user') }}"><i class="bx bx-right-arrow-alt"></i>Report By User</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-menu"></i>
+                </div>
+                <div class="menu-title">Manage User</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.user') }}"><i class="bx bx-right-arrow-alt"></i>All Customer</a>
+                </li>
+                <li> <a href="{{ route('all.vendor') }}"><i class="bx bx-right-arrow-alt"></i>All Vendor</a>
+                </li>
             </ul>
         </li>
         <li class="menu-label">Setup</li>

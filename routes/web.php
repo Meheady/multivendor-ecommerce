@@ -21,6 +21,7 @@ use App\Http\Controllers\admin\ShippingAreaController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ReturnController;
 use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\admin\ActiveUserController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\StripeController;
 use App\Http\Controllers\VendorOrderController;
@@ -223,6 +224,12 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::post('/report-monthly','reportMonthly')->name('report.monthly');
         Route::post('/report-daily','reportDaily')->name('report.daily');
         Route::post('/report-yearly','reportYearly')->name('report.yearly');
+        Route::get('/get-report-by-user','getReportByUser')->name('get.report.user');
+        Route::post('/report-by-user','reportByUser')->name('report.user');
+    });
+    Route::controller(ActiveUserController::class)->group(function (){
+        Route::get('/all-user','allUser')->name('all.user');
+
     });
 });
 
