@@ -229,6 +229,7 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     });
     Route::controller(ActiveUserController::class)->group(function (){
         Route::get('/all-user','allUser')->name('all.user');
+        Route::get('/all-vendor','allVendor')->name('all.vendor');
 
     });
 });
