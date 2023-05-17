@@ -37,12 +37,16 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->email }}</td>
-                                    <td>${{ $data->phone }}</td>
+                                    <td>{{ $data->phone }}</td>
                                     <td>
-                                        <img src="{{ asset($data->image) }}" height="50px" width="50px" alt="">
+                                        <img src="{{ asset($data->photo) }}" height="50px" width="50px" alt="">
                                     </td>
                                     <td>
-                                        <span class="badge rounded-pill bg-info">{{ $data->status }}</span>
+                                        @if($data->userOnline())
+                                        <span class="badge rounded-pill bg-success">Active</span>
+                                        @else
+                                            <span class="badge rounded-pill bg-danger">{{ Carbon\Carbon::parse($data->last_seen)->diffForHumans() }}</span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
