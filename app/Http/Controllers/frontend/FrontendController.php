@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultiImage;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,6 +37,8 @@ class FrontendController extends Controller
     public function productDetails($id,$slug)
     {
         $product = Product::find($id);
+        $review = Review::where('product_id', $id)->where('status','1')->latest()->limit(6)->get();
+        $reviewAvg = Review::where('product_id', $id)->where('status','1')->avg('rating');
         $multiImage = MultiImage::where('product_id',$id)->get();
         $category = Category::where('id',$product->category_id)->first();
         $subCat = SubCategory::where('id',$product->subcategory_id)->first();
@@ -53,7 +56,9 @@ class FrontendController extends Controller
             'brand'=>$brand,
             'subCat'=>$subCat,
             'vendor'=>$vendor,
-            'relatedProduct'=>$relatedProduct
+            'relatedProduct'=>$relatedProduct,
+            'review'=>$review,
+            'reviewAvg'=>$reviewAvg,
         ];
         $amount = $product->selling_price - $product->discount_price;
         $discount =  ($amount/$product->selling_price) * 100;

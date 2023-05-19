@@ -17,6 +17,8 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/plugins/animate.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/main.css?v=5.3" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <style>
         a#xa31cundpni1684174496011 {
             display: none;
@@ -69,11 +71,35 @@
 <script src="{{asset('frontend')}}/assets/js/plugins/jquery.vticker-min.js"></script>
 <script src="{{asset('frontend')}}/assets/js/plugins/jquery.theia.sticky.js"></script>
 <script src="{{asset('frontend')}}/assets/js/plugins/jquery.elevatezoom.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!-- Template  JS -->
 <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
 <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+    @if(Session::has('success'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('success')}}');
+            });
+        </script>
+    @endif
+    @if(Session::has('warning'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('warning')}}');
+            });
+        </script>
+    @endif
+    @if(Session::has('error'))
+        <script>
+            $(document).ready(function(){
+                toastr.success('{{Session::get('error')}}');
+            });
+        </script>
+@endif
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

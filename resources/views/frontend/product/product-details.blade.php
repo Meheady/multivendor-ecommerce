@@ -45,9 +45,23 @@
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+
+                                            @if($data['reviewAvg'] == 0)
+
+                                            @elseif($data['reviewAvg'] == 1 || $data['reviewAvg'] < 2)
+                                                <div class="product-rating" style="width: 20%"></div>
+                                            @elseif($data['reviewAvg'] == 2 || $data['reviewAvg'] < 3)
+                                                <div class="product-rating" style="width: 40%"></div>
+                                            @elseif($data['reviewAvg'] == 3 || $data['reviewAvg'] < 4)
+                                                <div class="product-rating" style="width: 60%"></div>
+                                            @elseif($data['reviewAvg'] == 4 || $data['reviewAvg'] < 5)
+                                                <div class="product-rating" style="width: 80%"></div>
+                                            @elseif($data['reviewAvg'] == 5 || $data['reviewAvg'] < 5)
+                                                <div class="product-rating" style="width: 100%"></div>
+                                            @endif
+
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                                        <span class="font-small ml-5 text-muted"> {{ count($data['review']) }} review </span>
                                     </div>
                                 </div>
 
@@ -142,7 +156,7 @@
                                     <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
+                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews ({{ count($data['review']) }})</a>
                                 </li>
                             </ul>
                             <div class="tab-content shop_info_tab entry-main-content">
@@ -245,19 +259,17 @@
                                         <div class="vendor-name ml-15">
                                             @if($data['vendor']['name'] !== NULL)
                                                 <h6>
-                                                    <a href="vendor-details-2.html">{{ $data['vendor']['name'] }}</a>
+                                                    <a href="#">{{ $data['vendor']['name'] }}</a>
                                                 </h6>
                                             @else
                                                 <h5>Sold By <a href="#"><span class="text-danger">Owner</span></a></h5>
                                             @endif
-                                            <h6>
-                                                <a href="vendor-details-2.html">Noodles Co.</a>
-                                            </h6>
+
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                                                <span class="font-small ml-5 text-muted">{{ count($data['review']) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -274,63 +286,39 @@
                                             <div class="col-lg-8">
                                                 <h4 class="mb-30">Customer questions & answers</h4>
                                                 <div class="comment-list">
-                                                    <div class="single-comment justify-content-between d-flex mb-30">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-2.png" alt="" />
-                                                                <a href="#" class="font-heading text-brand">Sienna</a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="d-flex justify-content-between mb-10">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
-                                                                    </div>
-                                                                    <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 100%"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-comment justify-content-between d-flex mb-30 ml-30">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-3.png" alt="" />
-                                                                <a href="#" class="font-heading text-brand">Brenna</a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="d-flex justify-content-between mb-10">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
-                                                                    </div>
-                                                                    <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 80%"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
+                                                    @foreach($data['review'] as $item)
                                                     <div class="single-comment justify-content-between d-flex">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-4.png" alt="" />
-                                                                <a href="#" class="font-heading text-brand">Gemma</a>
+                                                                <img src="{{ asset($item->user->photo) }}" alt="user image" />
+                                                                <a href="#" class="font-heading text-brand">{{ $item->user->name }}</a>
                                                             </div>
                                                             <div class="desc">
                                                                 <div class="d-flex justify-content-between mb-10">
                                                                     <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
+                                                                        <span class="font-xs text-muted">{{ $item->create_at }} </span>
                                                                     </div>
                                                                     <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 80%"></div>
+                                                                        @if($item->rating == '5')
+                                                                        <div class="product-rating" style="width: 100%"></div>
+                                                                        @elseif($item->rating == '4')
+                                                                            <div class="product-rating" style="width: 80%"></div>
+                                                                        @elseif($item->rating == '3')
+                                                                        <div class="product-rating" style="width: 60%"></div>
+                                                                        @elseif($item->rating == '2')
+                                                                        <div class="product-rating" style="width: 40%"></div>
+                                                                        @else
+                                                                            <div class="product-rating" style="width: 20%"></div>
+                                                                        @endif
+
                                                                     </div>
                                                                 </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
+                                                                <p class="mb-10">{{ $item->comment }}<a href="#" class="reply">Reply</a></p>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -368,38 +356,65 @@
                                     <!--comment form-->
                                     <div class="comment-form">
                                         <h4 class="mb-15">Add a review</h4>
-                                        <div class="product-rate d-inline-block mb-30"></div>
-                                        <div class="row">
-                                            <div class="col-lg-8 col-md-12">
-                                                <form class="form-contact comment_form" action="#" id="commentForm">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                        @guest
+                                            <p><b>For add Product Review you must login <a href="{{ route('login') }}">Login Here</a></b></p>
+                                            @else
+
+                                                <div class="col-lg-12 col-md-12">
+                                                    <form class="form-contact comment_form" action="{{ route('store.review') }}" method="post" id="commentForm">
+                                                        @csrf
+                                                        <div class="row">
+
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <table width="20px!important">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>1 start</th>
+                                                                        <th>2 start</th>
+                                                                        <th>3 start</th>
+                                                                        <th>4 start</th>
+                                                                        <th>5 start</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="radio" name="quality" value="1" id="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="radio" name="quality" value="2" id="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="radio" name="quality" value="3" id="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="radio" name="quality" value="4" id="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="radio" checked name="quality" value="5" id="">
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="row">
+                                                            <input type="hidden" name="product_id" value="{{ $data['product']['id'] }}">
+                                                            <input type="hidden" name="vendor_id" value="{{ $data['vendor']['id'] }}">
+                                                            <div class="col-4">
+                                                                <div class="form-group">
+                                                                    <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="button button-contactForm">Submit Review</button>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="button button-contactForm">Submit Review</button>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
+                                            @endguest
                                     </div>
                                 </div>
                             </div>

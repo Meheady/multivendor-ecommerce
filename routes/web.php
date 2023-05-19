@@ -24,6 +24,7 @@ use App\Http\Controllers\admin\ReportController;
 use App\Http\Controllers\admin\ActiveUserController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\StripeController;
+use App\Http\Controllers\frontend\ReviewController;
 use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\AllUserController;
 
@@ -95,6 +96,9 @@ Route::controller(UserController::class)->middleware(['auth','verified','role:us
         Route::get('/user-invoice-download/{id}','invoiceDownload')->name('user.invoice.download');
         Route::post('/return/order/{id}','returnOrder')->name('return.order');
         Route::get('/view/return/order/','ViewReturnOrder')->name('view.return.order');
+    });
+    Route::controller(ReviewController::class)->group(function (){
+        Route::post('/store-review','storeReview')->name('store.review');
     });
 });
 
