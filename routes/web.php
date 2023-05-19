@@ -234,7 +234,11 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     Route::controller(ActiveUserController::class)->group(function (){
         Route::get('/all-user','allUser')->name('admin.all.user');
         Route::get('/all-vendor','allVendor')->name('admin.all.vendor');
+    });
 
+    Route::controller(ReviewController::class)->group(function (){
+        Route::get('/pending-review','pendingReview')->name('admin.pending.review');
+        Route::get('/publish-review','publishReview')->name('admin.publish.review');
     });
 });
 

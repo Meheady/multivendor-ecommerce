@@ -21,4 +21,14 @@ class ReviewController extends Controller
 
         return redirect()->back()->with('success','Review added successfully');
     }
+
+    public function pendingReview()
+    {
+        $review = Review::where('status','0')->orderBy('id','DESC')->get();
+        return view('admin.review.pending.review', compact('review'));
+    }
+    public function publishReview()
+    {
+
+    }
 }
