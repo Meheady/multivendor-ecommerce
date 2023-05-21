@@ -22,7 +22,6 @@ class FrontendController extends Controller
         $skip_prod_1 = Product::where('status',1)->where('category_id',$skip_cat_1->id)->orderBy('id','DESC')->limit(5)->get();
         $skip_cat_2 = Category::skip(2)->first();
         $skip_prod_2 = Product::where('status',1)->where('category_id',$skip_cat_2->id)->orderBy('id','DESC')->limit(5)->get();
-
         $hotDeal = Product::where('status',1)->where('hot_deals','1')->orderBy('id','DESC')->limit(3)->get();
         $specialOffer = Product::where('status',1)->where('special_offer','1')->orderBy('id','DESC')->limit(3)->get();
         $specialDeals = Product::where('status',1)->where('special_deals','1')->orderBy('id','DESC')->limit(3)->get();
@@ -31,7 +30,7 @@ class FrontendController extends Controller
         return view('frontend.index',compact(
             'skip_cat_0','skip_prod_0',
             'skip_cat_1','skip_prod_1',
-            'skip_cat_2','skip_prod_2','hotDeal','specialOffer','specialDeals','new','allVendor'
+            'skip_cat_2','skip_prod_2','hotDeal','specialOffer','specialDeals','new','allVendor',
         ));
     }
     public function productDetails($id,$slug)

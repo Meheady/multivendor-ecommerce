@@ -144,7 +144,7 @@
                     location.href = this.$target.attr('href');
                 },
                 cancel: function () {
-                    return false;
+
                 },
             }
         });

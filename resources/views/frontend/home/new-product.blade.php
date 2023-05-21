@@ -42,7 +42,7 @@
                                     $discount =  ($amount/$item->selling_price) * 100;
                                     $vendor =  App\Models\User::where('id',$item->vendor_id)->first();
                                     $category =  App\Models\Category::where('id',$item->category_id)->first();
-
+                                    $reviewAvg = App\Models\Review::where('product_id', $item->id)->where('status','1')->avg('rating');
                                 @endphp
                                 <div class="product-badges product-badges-position product-badges-mrg">
                                     @if($item->selling_price == NULL)
@@ -59,9 +59,21 @@
                                 <h2><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                                        @if($reviewAvg == 0)
+
+                                        @elseif($reviewAvg == 1 || $reviewAvg < 2)
+                                            <div class="product-rating" style="width: 20%"></div>
+                                        @elseif($reviewAvg == 2 || $reviewAvg < 3)
+                                            <div class="product-rating" style="width: 40%"></div>
+                                        @elseif($reviewAvg == 3 || $reviewAvg < 4)
+                                            <div class="product-rating" style="width: 60%"></div>
+                                        @elseif($reviewAvg == 4 || $reviewAvg < 5)
+                                            <div class="product-rating" style="width: 80%"></div>
+                                        @elseif($reviewAvg == 5 || $reviewAvg < 5)
+                                            <div class="product-rating" style="width: 100%"></div>
+                                        @endif
                                     </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <span class="font-small ml-5 text-muted"> ({{ $reviewAvg }})</span>
                                 </div>
                                 <div>
                                     @if($item->vendor_id == NULL)
@@ -121,6 +133,7 @@
                                         $discount =  ($amount/$ite->selling_price) * 100;
                                         $vendor =  App\Models\User::where('id',$ite->vendor_id)->first();
                                         $category =  App\Models\Category::where('id',$ite->category_id)->first();
+                                    $reviewAvg = App\Models\Review::where('product_id', $item->id)->where('status','1')->avg('rating');
                                     @endphp
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         @if($ite->discount_price == NULL)
@@ -137,9 +150,21 @@
                                     <h2><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $ite->product_name }}</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+                                            @if($reviewAvg == 0)
+
+                                            @elseif($reviewAvg == 1 || $reviewAvg < 2)
+                                                <div class="product-rating" style="width: 20%"></div>
+                                            @elseif($reviewAvg == 2 || $reviewAvg < 3)
+                                                <div class="product-rating" style="width: 40%"></div>
+                                            @elseif($reviewAvg == 3 || $reviewAvg < 4)
+                                                <div class="product-rating" style="width: 60%"></div>
+                                            @elseif($reviewAvg == 4 || $reviewAvg < 5)
+                                                <div class="product-rating" style="width: 80%"></div>
+                                            @elseif($reviewAvg == 5 || $reviewAvg < 5)
+                                                <div class="product-rating" style="width: 100%"></div>
+                                            @endif
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        <span class="font-small ml-5 text-muted"> ({{ $reviewAvg }})</span>
                                     </div>
                                     <div>
                                         @if($ite->vendor_id == NULL)

@@ -11,7 +11,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Pending Review</li>
+                        <li class="breadcrumb-item active" aria-current="page">Published Review</li>
                     </ol>
                 </nav>
             </div>
@@ -39,15 +39,14 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$data->user->name}}</td>
                                     <td>{{$data->product->product_name}}</td>
-                                    <td><img src="{{ asset($data->product->product_thumbnail) }}" width="50px" height="50px" alt=""></td>
+                                    <td><img src="{{asset($data->product->product_thumbnail)}}" width="50px" height="50px" alt=""></td>
                                     <td>{{$data->rating}} star</td>
-                                    <td>{{Str::limit($data->comment,25)}}</td>
+                                    <td>{{Str::limit($data->comment,25) }}</td>
                                     <td>
-                                        <span class="badge rounded-pill bg-info">Pending</span>
+                                        <span class="badge rounded-pill bg-success">Published</span>
                                     </td>
-
                                     <td>
-                                        <a href="{{route('approve.review.admin',$data->id)}}" class="confirm btn btn-success">Approve</a>
+                                        <a href="{{route('delete.review.admin',$data->id)}}" class="confirm btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

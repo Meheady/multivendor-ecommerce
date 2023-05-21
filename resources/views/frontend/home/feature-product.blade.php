@@ -37,10 +37,11 @@
                                             <a aria-label="Compare" class="action-btn" id="{{ $item->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                         </div>
                                         @php
-                                            $amount = $item->selling_price - $item->discount_price;
-                                            $discount =  ($amount/$item->selling_price) * 100;
-                                            $vendor =  App\Models\User::where('id',$item->vendor_id)->first();
-                                            $category =  App\Models\Category::where('id',$item->category_id)->first();
+                                            $reviewAvg = App\Models\Review::where('product_id', $item->id)->where('status','1')->avg('rating');
+                                                $amount = $item->selling_price - $item->discount_price;
+                                                $discount =  ($amount/$item->selling_price) * 100;
+                                                $vendor =  App\Models\User::where('id',$item->vendor_id)->first();
+                                                $category =  App\Models\Category::where('id',$item->category_id)->first();
                                         @endphp
                                         <div class="product-badges product-badges-position product-badges-mrg">
                                             @if($item->selling_price == NULL)
@@ -56,7 +57,19 @@
                                         </div>
                                         <h2><a href="{{ url('product/details/'.$item->id.'/'.$item->product_slug) }}">{{ $item->product_name }}</a></h2>
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 80%"></div>
+                                            @if($reviewAvg == 0)
+
+                                            @elseif($reviewAvg == 1 || $reviewAvg < 2)
+                                                <div class="product-rating" style="width: 20%"></div>
+                                            @elseif($reviewAvg == 2 || $reviewAvg < 3)
+                                                <div class="product-rating" style="width: 40%"></div>
+                                            @elseif($reviewAvg == 3 || $reviewAvg < 4)
+                                                <div class="product-rating" style="width: 60%"></div>
+                                            @elseif($reviewAvg == 4 || $reviewAvg < 5)
+                                                <div class="product-rating" style="width: 80%"></div>
+                                            @elseif($reviewAvg == 5 || $reviewAvg < 5)
+                                                <div class="product-rating" style="width: 100%"></div>
+                                            @endif
                                         </div>
                                         @if($item->discount_price == NULL)
                                             <div class="product-price mt-10 mb-10">

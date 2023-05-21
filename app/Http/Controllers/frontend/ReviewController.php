@@ -25,10 +25,27 @@ class ReviewController extends Controller
     public function pendingReview()
     {
         $review = Review::where('status','0')->orderBy('id','DESC')->get();
-        return view('admin.review.pending.review', compact('review'));
+        return view('admin.review.pending-review', compact('review'));
     }
     public function publishReview()
     {
+        $review = Review::where('status','1')->orderBy('id','DESC')->get();
+        return view('admin.review.publish-review', compact('review'));
+    }
+    public function approveReview($id)
+    {
+        Review::where('id',$id)->update(['status'=>1]);
+        return redirect()->back()->with('success','Review approve successfully');
+    }
+    public function deleteReview($id)
+    {
+        Review::where('id',$id)->delete();
+        return redirect()->back()->with('success','Review delete successfully');
+    }
 
+    public function vendorReview()
+    {
+        $review = Review::where('vendor_id', Auth::user()->id)->orderBy('id','DESC')->get();
+        return view('vendor.review.publish-review', compact('review'));
     }
 }

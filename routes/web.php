@@ -239,6 +239,8 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
     Route::controller(ReviewController::class)->group(function (){
         Route::get('/pending-review','pendingReview')->name('admin.pending.review');
         Route::get('/publish-review','publishReview')->name('admin.publish.review');
+        Route::get('/approve-review-admin/{id}','approveReview')->name('approve.review.admin');
+        Route::get('/delete-review-admin/{id}','deleteReview')->name('delete.review.admin');
     });
 });
 
@@ -274,8 +276,10 @@ Route::middleware(['auth','role:vendor'])->prefix('vendor')->group(function (){
         Route::get('/vendor/order/details/{id}','vendorOrderDetails')->name('vendor.order.details');
         Route::get('/return/order','vendorReturnOrder')->name('vendor.return.order');
         Route::get('/confirm/return/order','vendorConfirmReturnOrder')->name('vendor.return.confirm.order');
-
        });
+    Route::controller(ReviewController::class)->group(function (){
+        Route::get('/vendor-review','vendorReview')->name('vendor.all.review');
+    });
 });
 
 //frontend routes
