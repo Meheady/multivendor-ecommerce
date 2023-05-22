@@ -115,4 +115,10 @@ class ProductController extends Controller
 
     }
 
+    public function productStock()
+    {
+        $allData = Product::latest()->get();
+        return view('admin.product.product-stock',compact('allData'));
+    }
+
 }

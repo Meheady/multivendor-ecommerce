@@ -195,6 +195,17 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-menu"></i>
+                </div>
+                <div class="menu-title">Product Stock</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-label">Setup</li>
         <li>
             <a href="javascript:;" class="has-arrow">

@@ -2,16 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     public function AdminDashboard()
     {
-        return view('admin.index');
+        $date = date('d-m-Y');
+        $date = Order::where('order_date', $date)->sum('amount');
+         $month = date('F');
+        $month = Order::where('order_month', $month)->sum('amount');
+         $year = date('Y');
+        $year = Order::where('order_year', $year)->sum('amount');
+
+        $order  = DB::table('orders')
+            ->leftJoin('order_items','orders.id','=','order_items.order_id')
+            ->leftJoin('products','products.id','=','order_items.product_id')
+            ->leftJoin('users','users.id','=','orders.user_id')
+            ->get();
+
+        $pendingOrder = Order::where('status', 'pending')->get();
+
+        $vendor = User::where('role','vendor')->where('status','active')->get();
+        $customer = User::where('role','user')->where('status','active')->get();
+
+
+
+        return view('admin.index',compact('date','month','year','order','pendingOrder','vendor','customer'));
     }
 
     public function adminLogin()

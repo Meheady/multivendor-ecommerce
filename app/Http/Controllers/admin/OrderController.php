@@ -5,9 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -57,6 +59,10 @@ class OrderController extends Controller
             $order->save();
             return redirect()->route('confirm.order')->with('success','Order processing successfully');
         }elseif($order->status == 'processing'){
+            $product = OrderItem::where('order_id',$id)->get();
+            foreach ($product as $item){
+                Product::where('id',$item->product_id)->update(['product_qty'=>DB::raw('product_qty-'.$item->qty)]);
+            }
             $order->status = 'delivered';
             $order->save();
             return redirect()->route('processing.order')->with('success','Order delivered successfully');

@@ -151,6 +151,8 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/status/product/{id}','statusProduct')->name('status.product');
         Route::post('/update/product-thumb/{id}','updateProductThumb')->name('update.product.thumb');
         Route::post('/update/product-multimage/','updateProductKultimg')->name('update.product.multimg');
+        Route::get('/product-stock','productStock')->name('product.stock');
+
     });
 
     Route::controller(AdminController::class)->group(function (){
