@@ -67,4 +67,20 @@ class AllUserController extends Controller
         $orders = Order::where('user_id', $id)->where('return_order','!=','0')->orderBy('id','desc')->get();
         return view('frontend.user.return-order',compact('orders'));
     }
+
+    public function orderTrack()
+    {
+        return view('frontend.order.order-track');
+    }
+    public function orderTracking(Request $request)
+    {
+        $invoiceNo = $request->invoice_no;
+        $track = Order::where('invoice_no', $invoiceNo)->first();
+        if($track){
+            return view('frontend.order.order-tracking', compact('track'));
+        }
+        else{
+            return redirect()->back()->with('error','Your invoice not found');
+        }
+    }
 }

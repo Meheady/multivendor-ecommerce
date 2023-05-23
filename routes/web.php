@@ -329,6 +329,10 @@ Route::controller(WishListController::class)->group(function (){
 Route::controller(CompareProductController::class)->group(function (){
     Route::post('/add-to-compare/{id}','addToCompare');
 });
+Route::controller(AllUserController::class)->group(function (){
+    Route::get('/order-track','orderTrack')->name('order.track');
+    Route::post('/order-tracking','orderTracking')->name('order.tracking');
+});
 Route::controller(CompareProductController::class)->middleware(['auth','verified','role:user'])->group(function (){
     Route::get('/compare','allCompareList')->name('compare');
     Route::get('/get-compare-data/','getCompareList');

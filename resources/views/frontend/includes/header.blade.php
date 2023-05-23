@@ -9,9 +9,9 @@
                     <div class="header-info">
                         <ul>
 
-                            <li><a href="page-account.html">My Cart</a></li>
-                            <li><a href="shop-wishlist.html">Checkout</a></li>
-                            <li><a href="shop-order.html">Order Tracking</a></li>
+{{--                            <li><a href="page-account.html">My Cart</a></li>--}}
+{{--                            <li><a href="shop-wishlist.html">Checkout</a></li>--}}
+                            <li><a href="{{ route('order.track') }}">Order Tracking</a></li>
                         </ul>
                     </div>
                 </div>
