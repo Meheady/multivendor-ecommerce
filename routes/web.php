@@ -293,6 +293,9 @@ Route::controller(FrontendController::class)->group(function (){
     Route::get('/product/category/{id}/{slug}','catWiseProduct');
     Route::get('/product/sub-category/{id}/{slug}','subCatWiseProduct');
     Route::get('/product/view/modal/{id}','productModalView');
+    Route::post('/search','productSearch')->name('product.search');
+    Route::post('/ajax-product-search','ajaxProductSearch');
+
 });
 Route::controller(CartController::class)->group(function (){
     Route::post('/cart/data/store/{id}','addToCart');

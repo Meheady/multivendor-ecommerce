@@ -17,11 +17,24 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/plugins/animate.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/main.css?v=5.3" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <style>
         a#xa31cundpni1684174496011 {
             display: none;
+        }
+         #search-item{
+             position: absolute;
+             top: 100%;
+             left: 0;
+             width: 100%;
+             background: #ffffff;
+             z-index: 999;
+             border-radius: 8px;
+             margin-top: 5px;
+         }
+        .search-style-2 form input {
+            background-image: unset!important;
         }
     </style>
 </head>
@@ -76,6 +89,7 @@
 <!-- Template  JS -->
 <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
 <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
+<script src="{{asset('frontend')}}/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -113,7 +127,16 @@
       })();
   </script>
   <!--End of Tawk.to Script-->
+    <script>
+        function search_result_show(){
+            $("#search-item").slideDown();
 
+        }
+
+        function search_result_hide(){
+            $("#search-item").slideUp();
+        }
+    </script>
     <script type="text/javascript">
         $.ajaxSetup({
            headers:{

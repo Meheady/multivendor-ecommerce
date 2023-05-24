@@ -11,6 +11,7 @@ use App\Models\Review;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -112,6 +113,35 @@ class FrontendController extends Controller
         ];
 
         return response()->json($data);
+
+    }
+
+    public function productSearch(Request $request)
+    {
+        $item = $request->search;
+
+        $product = Product::where('product_name','LIKE', "%$item%")->get();
+        $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+
+        $categories = DB::table('categories')
+            ->leftJoin('products','products.category_id','=','categories.id')
+            ->select('categories.*',DB::raw('count(products.id) as product_count'))
+            ->groupBy('categories.id')
+            ->get();
+        return view('frontend.product.search',compact('product','item','new','categories'));
+    }
+
+
+    public function ajaxProductSearch(Request $request)
+    {
+        $item = $request->search;
+
+        $product = Product::where('product_name','LIKE', "%$item%")
+            ->select('id','product_name','product_thumbnail','selling_price','product_slug')
+        ->limit(6)
+            ->get();
+        return view('frontend.product.ajax-search',compact('product'));
+
 
     }
 }
