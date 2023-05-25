@@ -212,40 +212,45 @@
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
                                     @foreach($categories as $category)
+                                        @if($loop->index < 5)
                                     <li>
                                         <a href="{{ url('product/category/'.$category->id.'/'.$category->cat_slug) }}"> <img src="{{asset($category->cat_image)}}" alt="" />{{  $category->cat_name}}</a>
                                     </li>
+                                        @endif
                                      @endforeach
                                 </ul>
                                 <ul class="end">
                                     @foreach($categories as $category)
+                                        @if($loop->index > 5)
                                         <li>
                                             <a href="{{ url('product/category/'.$category->id.'/'.$category->cat_slug) }}"> <img src="{{asset($category->cat_image)}}" alt="" />{{  $category->cat_name}}</a>
                                         </li>
+                                            @endif
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="more_slide_open" style="display: none">
-                                <div class="d-flex categori-dropdown-inner">
-                                    <ul>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="end">
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>
+{{--                            <div class="more_slide_open" style="display: none">--}}
+{{--                                <div class="d-flex categori-dropdown-inner">--}}
+{{--                                    <ul>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                    <ul class="end">--}}
+{{--                                        <li>--}}
+{{--                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="shop-grid-right.html"> <img src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>--}}
+{{--                        --}}
                         </div>
                     </div>
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">

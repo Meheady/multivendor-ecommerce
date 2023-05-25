@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\User;
+use App\Notifications\OrderCompleteNotification;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class StripeController extends Controller
@@ -18,6 +21,7 @@ class StripeController extends Controller
 
     public function stripeOrder(Request $request)
     {
+        $user = User::where('role','admin')->get();
         if(Session::has('coupon')){
             $totalAmount = Session::get('coupon')['total_amount'];
         }
@@ -99,11 +103,13 @@ class StripeController extends Controller
 
         Cart::destroy();
 
+        Notification::send($user, new OrderCompleteNotification($request->name));
         return redirect()->route('dashboard')->with('message','Your order place successfully');
     }
 
     public function cashOrder(Request $request)
     {
+        $user = User::where('role','admin')->get();
         if(Session::has('coupon')){
             $totalAmount = Session::get('coupon')['total_amount'];
         }
@@ -173,7 +179,7 @@ class StripeController extends Controller
         }
 
         Cart::destroy();
-
+        Notification::send($user, new OrderCompleteNotification($request->name));
         return redirect()->route('dashboard')->with('message','Your order place successfully');
     }
 }

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
+use App\Notifications\VendorApproveNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -106,15 +108,18 @@ class AdminController extends Controller
     public function updateVendorStatus(Request $request,$id)
     {
         $user = User::find($id);
+        $vuser = User::where('role','vendor')->get();
 
         if ($user->status === 'active'){
             $user->status = 'inactive';
             $user->save();
+            Notification::send($vuser, new VendorApproveNotification("Inactive"));
             return redirect()->route('inactive.vendor')->with('success',"Vendor inactive successfully");
         }
         else{
             $user->status = 'active';
             $user->save();
+            Notification::send($vuser, new VendorApproveNotification("Active"));
             return redirect()->route('active.vendor')->with('success',"Vendor active successfully");
         }
     }

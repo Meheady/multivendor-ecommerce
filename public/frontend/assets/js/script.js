@@ -31,9 +31,7 @@ function handleVoiceSearch() {
     recognition.start(); // Start the speech recognition
     recognition.lang = 'en-US'; // Set the language for recognition
 
-    recognition.onresult = func
-
-    tion(event) {
+    recognition.onresult = function() {
         let transcript = event.results[0][0].transcript; // Get the recognized transcript
         document.getElementById('search').value = transcript; // Update the search input field with the transcript
 
