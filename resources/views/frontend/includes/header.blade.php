@@ -285,6 +285,9 @@
                                 <li>
                                     <a href="page-contact.html">Contact</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('shop') }}">Shop</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>

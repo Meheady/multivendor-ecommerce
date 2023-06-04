@@ -295,6 +295,8 @@ Route::controller(FrontendController::class)->group(function (){
     Route::get('/product/view/modal/{id}','productModalView');
     Route::post('/search','productSearch')->name('product.search');
     Route::post('/ajax-product-search','ajaxProductSearch');
+    Route::get('/shop','shopProduct')->name('shop');
+    Route::post('/product/filter','shopFilter')->name('product.filter');
 
 });
 Route::controller(CartController::class)->group(function (){

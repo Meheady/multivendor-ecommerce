@@ -141,7 +141,67 @@ class FrontendController extends Controller
         ->limit(6)
             ->get();
         return view('frontend.product.ajax-search',compact('product'));
+    }
+
+    public function shopProduct()
+    {
+        $product = Product::query();
+
+        if(!empty($_GET['category'])){
+            $slugs = explode(',',$_GET['category']);
+            $catIds =  Category::select('id')->whereIn('cat_slug',$slugs)->pluck('id')->toArray();
+            $product = Product::whereIn('category_id',$catIds)->orderBy('id','DESC')->get();
+        }
+        elseif(!empty($_GET['brand'])){
+            $slugs = explode(',',$_GET['brand']);
+            $brandIds =  Brand::select('id')->whereIn('brand_slug',$slugs)->pluck('id')->toArray();
+            $product = Product::whereIn('brand_id',$brandIds)->orderBy('id','DESC')->get();
+        }
+        else{
+            $product = Product::latest()->get();
+        }
 
 
+        $brands = Brand::latest()->get();
+        $categories = DB::table('categories')
+            ->leftJoin('products','products.category_id','=','categories.id')
+            ->select('categories.*',DB::raw('count(products.id) as product_count'))
+            ->groupBy('categories.id')
+            ->get();
+
+        $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.shop-page',compact('product','new','categories','brands'));
+    }
+
+    public function shopFilter(Request $request)
+    {
+        $data = $request->all();
+
+        $catUrl = "";
+        if(!empty($data['category'])){
+            foreach($data['category'] as $item){
+                if(empty($catUrl)){
+                    $catUrl .= "&category=".$item;
+                }
+                else{
+                    $catUrl .= ",".$item;
+                }
+            }
+        }
+
+
+        $brandUrl = "";
+        if(!empty($data['brand'])){
+            foreach($data['brand'] as $item){
+                if(empty($brandUrl)){
+                    $brandUrl .= "&brand=".$item;
+                }
+                else{
+                    $brandUrl .= ",".$item;
+                }
+            }
+        }
+
+        return redirect()->route('shop',$catUrl.$brandUrl);
     }
 }
