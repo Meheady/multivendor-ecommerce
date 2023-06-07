@@ -160,6 +160,10 @@ class FrontendController extends Controller
         else{
             $product = Product::latest()->get();
         }
+        if(!empty($_GET['price'])){
+            $price = explode('-',$_GET['price']);
+            $product = Product::whereBetween('selling_price',$price)->orderBy('id','DESC')->get();
+        }
 
 
         $brands = Brand::latest()->get();
@@ -201,7 +205,13 @@ class FrontendController extends Controller
                 }
             }
         }
+        $priceUrl = "";
+        if(!empty($data['price_range'])){
+                if(empty($priceUrl)){
+                    $brandUrl .= "&price=".$data['price_range'];
+                }
+        }
 
-        return redirect()->route('shop',$catUrl.$brandUrl);
+        return redirect()->route('shop',$catUrl.$brandUrl.$priceUrl);
     }
 }

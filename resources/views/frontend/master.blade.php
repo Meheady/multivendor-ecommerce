@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/main.css?v=5.3" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
     <style>
         a#xa31cundpni1684174496011 {
             display: none;
@@ -91,9 +92,11 @@
 <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
 <script src="{{asset('frontend')}}/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
 
-    @if(Session::has('success'))
+
+@if(Session::has('success'))
         <script>
             $(document).ready(function(){
                 toastr.success('{{Session::get('success')}}');

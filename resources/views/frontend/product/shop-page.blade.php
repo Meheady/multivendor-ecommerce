@@ -1,5 +1,8 @@
 @extends('frontend.master')
 @section('main')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <div class="page-header mt-30 mb-50">
         <div class="container">
             <div class="archive-header">
@@ -158,11 +161,12 @@
                     <h5 class="section-title style-1 mb-30">Fill by price</h5>
                     <div class="price-filter">
                         <div class="price-filter-inner">
-                            <div id="slider-range" class="mb-20"></div>
-                            <div class="d-flex justify-content-between">
-                                <div class="caption">From: <strong id="slider-range-value1" class="text-brand"></strong></div>
-                                <div class="caption">To: <strong id="slider-range-value2" class="text-brand"></strong></div>
-                            </div>
+                            <div id="slider-range" class="price-filter-range" data-min="0" data-max="2000"></div>
+                            <input type="hidden" id="price_range" name="price_range" value="">
+                            <input type="text" id="amount" randomly="" value="$0 - $2000">
+                            <br>
+                            <button class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Filter</button>
+
                         </div>
                     </div>
                     <div class="list-group">
@@ -196,8 +200,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
-                </div>
+                  </div>
                 </form>
                 <!-- Product sidebar Widget -->
                 <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
@@ -237,4 +240,33 @@
 
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            if($("#slider-range").length > 0){
+                const maxPrice = parseInt($("#slider-range").data('max'));
+                const minPrice = parseInt($("#slider-range").data('min'));
+
+                let priceRange = minPrice+"-"+maxPrice;
+
+                let price = priceRange.split("-");
+
+
+                $("#slider-range").slider({
+                    range: true,
+                    orientation: "horizontal",
+                    min: minPrice,
+                    max: maxPrice,
+                    values: price,
+                    slide: function (event, ui) {
+                        $("#amount").val('$'+ui.values[0]+'-'+'$'+ui.values[1]);
+                        $("#price_range").val(ui.values[0]+'-'+ui.values[1]);
+                    }
+                });
+            }
+        });
+
+    </script>
 @endsection
+
