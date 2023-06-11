@@ -283,7 +283,7 @@
                                 </li>
                                 @endforeach
                                 <li>
-                                    <a href="page-contact.html">Contact</a>
+                                    <a href="{{ route('contact') }}">Contact</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('shop') }}">Shop</a>
@@ -457,7 +457,7 @@
                             <a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="page-about.html">About Us</a></li>
-                                <li><a href="page-contact.html">Contact</a></li>
+                                <li><a href="{{ route('contact') }}">Contact</a></li>
                                 <li><a href="page-account.html">My Account</a></li>
                                 <li><a href="page-login.html">Login</a></li>
                                 <li><a href="page-register.html">Register</a></li>
@@ -484,10 +484,10 @@
             </div>
             <div class="mobile-header-info-wrap">
                 <div class="single-mobile-header-info">
-                    <a href="page-contact.html"><i class="fi-rs-marker"></i> Our location </a>
+                    <a href="{{ route('contact') }}"><i class="fi-rs-marker"></i> Our location </a>
                 </div>
                 <div class="single-mobile-header-info">
-                    <a href="page-login.html"><i class="fi-rs-user"></i>Log In / Sign Up </a>
+                    <a href="{{ route('login') }}"><i class="fi-rs-user"></i>Log In / Sign Up </a>
                 </div>
                 <div class="single-mobile-header-info">
                     <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>

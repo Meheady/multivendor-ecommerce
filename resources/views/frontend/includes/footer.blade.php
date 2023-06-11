@@ -116,7 +116,7 @@
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="#">Support Center</a></li>
                     </ul>
                 </div>
@@ -126,7 +126,7 @@
                         <li><a href="{{ route('login') }}">Sign In</a></li>
                         <li><a href="{{ route('mycart') }}">View Cart</a></li>
                         <li><a href="{{ route('wishlist') }}">My Wishlist</a></li>
-                        <li><a href="#">Track My Order</a></li>
+                        <li><a href="{{ route('order.track') }}">Track My Order</a></li>
                         <li><a href="{{ route('compare') }}">Compare products</a></li>
                     </ul>
                 </div>

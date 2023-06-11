@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\MultiImage;
 use App\Models\Product;
 use App\Models\Review;
@@ -12,6 +14,7 @@ use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
 {
@@ -213,5 +216,27 @@ class FrontendController extends Controller
         }
 
         return redirect()->route('shop',$catUrl.$brandUrl.$priceUrl);
+    }
+
+
+    public function contactUs()
+    {
+        return view('frontend.others.contact');
+    }
+
+    public function saveContactUs(Request $request)
+    {
+        $data = [
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'subject'=>$request->subject,
+            'phone'=>$request->phone,
+            'message'=>$request->message,
+        ];
+
+        $contact = Contact::create($data);
+        Mail::to('hmmehedi55@gmail.com')->send(new ContactMail($data));
+
+        return redirect()->back()->with('success','SuccessfullyY submitted, we will reply soon');
     }
 }

@@ -27,6 +27,7 @@ use App\Http\Controllers\frontend\StripeController;
 use App\Http\Controllers\frontend\ReviewController;
 use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\AllUserController;
+use App\Http\Controllers\admin\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -244,6 +245,9 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function (){
         Route::get('/approve-review-admin/{id}','approveReview')->name('approve.review.admin');
         Route::get('/delete-review-admin/{id}','deleteReview')->name('delete.review.admin');
     });
+    Route::controller(ContactController::class)->group(function (){
+        Route::get('/all-contact','allContact')->name('all.contact');
+    });
 });
 
 Route::get('/vendor/login',[VendorController::class,'vendorLogin'])->name('vendor.login');
@@ -297,6 +301,9 @@ Route::controller(FrontendController::class)->group(function (){
     Route::post('/ajax-product-search','ajaxProductSearch');
     Route::get('/shop','shopProduct')->name('shop');
     Route::post('/product/filter','shopFilter')->name('product.filter');
+
+    Route::get('/contact-us','contactUs')->name('contact');
+    Route::post('/save/contact','saveContactUs')->name('store.contact');
 
 });
 Route::controller(CartController::class)->group(function (){
