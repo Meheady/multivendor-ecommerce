@@ -49,6 +49,16 @@ class FrontendController extends Controller
         $vendor = User::where('id',$product->vendor_id)->first();
         $productColor = explode(',',$product->product_color);
         $productSize = explode(',',$product->product_size);
+        $shareComponent = \Share::page(
+            'https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/',
+            'Your share text comes here',
+        )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()
+            ->reddit();
         $relatedProduct = Product::where('category_id',$product->category_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
         $data = [
           'product'=>$product,
@@ -65,7 +75,7 @@ class FrontendController extends Controller
         ];
         $amount = $product->selling_price - $product->discount_price;
         $discount =  ($amount/$product->selling_price) * 100;
-        return view('frontend.product.product-details',compact('data','discount'));
+        return view('frontend.product.product-details',compact('data','discount','shareComponent'));
     }
 
     public function vendorDetails($id)

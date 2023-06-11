@@ -1,6 +1,20 @@
 @extends('frontend.master')
 @section('main')
-
+    <style>
+        div#social-links ul li {
+            display: inline-block;
+        }
+        div#social-links ul li a {
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin: 1px;
+            font-size: 20px;
+            color: #222;
+            background-color: #ccc;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -116,8 +130,6 @@
                                     <div class="product-extra-link2">
                                         <input type="hidden" id="d_p_id" name="d_p_id" value="{{ $data['product']['id']  }}">
                                         <button type="submit" onclick="addToCartPdetails()" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                     </div>
                                 </div>
                                     @if($data['vendor']['name'] !== NULL)
@@ -139,6 +151,14 @@
                                         <input type="hidden" id="dvendor_id">
                                     </ul>
                                 </div>
+                                    <div id="social-links">
+                                        <ul>
+                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" class="social-button " id=""><span class="fa fa-facebook-official"></span></a></li>
+                                            <li><a href="https://twitter.com/intent/tweet?text=my share text&amp;url={{ url()->current() }}" class="social-button " id=""><span class="fa fa-twitter"></span></a></li>
+                                            <li><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ url()->current() }}&amp;title=my share text&amp;summary=dit is de linkedin summary" class="social-button " id=""><span class="fa fa-linkedin"></span></a></li>
+                                            <li><a href="https://wa.me/?text={{ url()->current() }}" class="social-button " id=""><span class="fa fa-whatsapp"></span></a></li>
+                                        </ul>
+                                    </div>
                             </div>
                             <!-- Detail Info -->
                         </div>
