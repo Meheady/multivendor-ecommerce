@@ -25,12 +25,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('view.return.order') }}" ><i class="fi-rs-shopping-bag mr-10"></i>Return Order</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"  href="#track-orders" ><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#address" ><i class="fi-rs-marker mr-10"></i>My Address</a>
-                                    </li>
+
                                     <li class="nav-item">
                                         <a class="nav-link active" href="{{ route('user.change.password') }}" ><i class="fi-rs-key mr-10"></i>Change Password</a>
                                     </li>

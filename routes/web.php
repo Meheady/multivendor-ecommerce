@@ -322,7 +322,13 @@ Route::controller(CheckoutController::class)->group(function (){
     Route::get('/ajax-get-state/{id}','getState');
     Route::post('/checkout-store','checkoutStore')->name('checkout.store');
     Route::post('/stripe-order','stripeOrder')->name('stripe.order');
+
+    Route::post('/success','success')->name('success');
+
+    Route::post('/fail','fail')->name('fail');
+    Route::get('/cancel','cancel')->name('cancel');
 });
+
 Route::controller(StripeController::class)->group(function (){
     Route::post('/stripe-order','stripeOrder')->name('stripe.order');
     Route::post('/cash-order','cashOrder')->name('cash.order');

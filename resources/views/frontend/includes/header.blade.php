@@ -146,23 +146,14 @@
                                     <img class="svgInject" alt="Nest" src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-user.svg" />
                                 </a>
                                 @auth
-                                <a href="page-account.html"><span class="lable ml-0">Account</span></a>
+                                <a href="#"><span class="lable ml-0">Account</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>
                                             <a href="{{route('dashboard')}}"><i class="fi fi-rs-user mr-10"></i>My Account</a>
                                         </li>
                                         <li>
-                                            <a href="{{route('dashboard')}}#track-orders-tab"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('dashboard')}}"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('dashboard')}}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('dashboard')}}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
+                                            <a href="{{ route('order.track') }}"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
                                         </li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
