@@ -118,9 +118,9 @@
                                                 <span class="old-price">{{ $item->selling_price }}</span>
                                             </div>
                                         @endif
-                                        <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                        </div>
+{{--                                        <div class="add-cart">--}}
+{{--                                            <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>

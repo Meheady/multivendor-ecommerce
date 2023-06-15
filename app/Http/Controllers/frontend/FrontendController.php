@@ -122,7 +122,7 @@ class FrontendController extends Controller
             'category'=>$category,
             'brand'=>$brand,
             'pcolor'=>$productColor,
-            'psize'=>$productColor
+            'psize'=>$productSize
         ];
 
         return response()->json($data);

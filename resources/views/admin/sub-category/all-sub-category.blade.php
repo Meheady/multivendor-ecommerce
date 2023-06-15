@@ -31,7 +31,6 @@
                                 <th>Sl</th>
                                 <th>Category Name</th>
                                 <th>Sub-Category Name</th>
-                                <th>Category Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>

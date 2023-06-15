@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="detail-info pr-30 pl-30">
-                            <h3 class="title-detail"><a href="#" id="pname" class="text-heading">S</a></h3>
+                            <h5 class="title-detail"><a href="#" id="pname" class="text-heading"></a></h5>
                             <div class="attr-detail attr-size mb-30" id="sizearea">
                             <strong class="mr-10">Size: </strong>
                             <select name="size" class="form-control unicase-form-control" id="psize">

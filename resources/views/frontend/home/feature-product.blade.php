@@ -82,7 +82,8 @@
                                             </div>
                                         @endif
 
-                                        <a href="shop-cart.html" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+{{--                                        <a href="shop-cart.html" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>--}}
+{{--                                    --}}
                                     </div>
                                 </div>
                                 <!--End product Wrap-->
